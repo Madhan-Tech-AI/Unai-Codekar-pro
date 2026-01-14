@@ -4,10 +4,13 @@ import { Button } from "@/components/ui/button";
 import GradientText from "@/components/ui/GradientText";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Docs", href: "/get-started/introduction" },
-  { name: "Showcase", href: "/showcase" },
-  { name: "Tools", href: "/tools" },
+  { name: "About", href: "#about" },
+  { name: "Tracks", href: "#tracks" },
+  { name: "Prizes", href: "#prizes" },
+
+  { name: "Sponsors", href: "#sponsors" },
+  { name: "Team", href: "#team" },
+  { name: "FAQ", href: "#faq" },
 ];
 
 export const Navbar = () => {
