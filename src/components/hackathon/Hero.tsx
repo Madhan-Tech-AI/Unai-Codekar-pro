@@ -16,12 +16,12 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
 
       <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
         {/* Main title */}
-        <div className="flex flex-col items-center justify-center mb-6 mt-24 md:mt-0">
+        <div className="flex flex-col items-center justify-center mb-6 mt-32 md:mt-20">
           <GradientText
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={3}
             showBorder={false}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold leading-none"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold leading-none"
           >
             HACKATHON
           </GradientText>
@@ -29,7 +29,7 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
             colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
             animationSpeed={3}
             showBorder={false}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold leading-none"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold leading-none -mt-2 md:-mt-4"
           >
             CodeKar 2026
           </GradientText>
