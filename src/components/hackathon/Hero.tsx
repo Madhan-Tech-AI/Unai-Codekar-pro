@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
-import TrueFocus from "@/components/ui/TrueFocus";
+import GradientText from "@/components/ui/GradientText";
+import LaserFlow from "@/components/ui/LaserFlow";
 import { useEffect } from "react";
 
 export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
@@ -9,30 +10,35 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
   }, [onIntroComplete]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in bg-background pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in bg-black pt-20">
+      {/* Background - LaserFlow */}
+      <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none">
+        <LaserFlow
+          color="#40ffaa"
+          wispDensity={1.2}
+          flowSpeed={0.2}
+        />
+      </div>
+
       <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
         {/* Main title */}
-        <div className="flex flex-col items-center justify-center mb-6 mt-32 md:mt-20 gap-4">
-          <div className="scale-90 md:scale-125 origin-center">
-            <TrueFocus
-              sentence="HACKATHON"
-              manualMode={false}
-              blurAmount={5}
-              borderColor="#40ffaa"
-              animationDuration={1}
-              pauseBetweenAnimations={0.5}
-            />
-          </div>
-          <div className="scale-90 md:scale-125 origin-center -mt-10 md:-mt-6">
-            <TrueFocus
-              sentence="CodeKar 2026"
-              manualMode={false}
-              blurAmount={5}
-              borderColor="#40ffaa"
-              animationDuration={1}
-              pauseBetweenAnimations={0.5}
-            />
-          </div>
+        <div className="flex flex-col items-center justify-center mb-6 mt-32 md:mt-20">
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold leading-none"
+          >
+            HACKATHON
+          </GradientText>
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold leading-none -mt-2 md:-mt-4"
+          >
+            CodeKar 2026
+          </GradientText>
         </div>
 
         {/* Tagline */}
