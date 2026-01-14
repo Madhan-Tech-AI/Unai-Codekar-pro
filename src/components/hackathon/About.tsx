@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Users, Building2, MapPin, Trophy } from "lucide-react";
+import MagicBento from "@/components/ui/MagicBento";
 
 const stats = [
   { icon: Users, value: 5000, suffix: "+", label: "Total Registrations" },
@@ -99,6 +100,22 @@ export const About = () => {
               like-minded individuals, and transform innovative ideas into
               impactful solutions that benefit society.
             </p>
+          </div>
+
+          {/* Magic Bento Grid */}
+          <div className="mb-16">
+            <MagicBento
+              textAutoHide={true}
+              enableStars={true}
+              enableSpotlight={true}
+              enableBorderGlow={true}
+              enableTilt={true}
+              enableMagnetism={true}
+              clickEffect={true}
+              spotlightRadius={300}
+              particleCount={12}
+              glowColor="132, 0, 255"
+            />
           </div>
         </div>
 
