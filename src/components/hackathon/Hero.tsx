@@ -17,7 +17,7 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
       <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
         {/* Main title */}
         <div className="flex flex-col items-center justify-center mb-6 mt-32 md:mt-20 gap-4">
-          <div className="scale-75 md:scale-100 origin-center">
+          <div className="scale-90 md:scale-125 origin-center">
             <TrueFocus
               sentence="HACKATHON"
               manualMode={false}
@@ -27,7 +27,7 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
               pauseBetweenAnimations={0.5}
             />
           </div>
-          <div className="scale-75 md:scale-100 origin-center -mt-8 md:-mt-4">
+          <div className="scale-90 md:scale-125 origin-center -mt-10 md:-mt-6">
             <TrueFocus
               sentence="CodeKar 2026"
               manualMode={false}
