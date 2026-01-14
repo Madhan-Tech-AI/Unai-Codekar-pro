@@ -19,8 +19,31 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="py-16 relative border-t border-border">
+    <footer className="py-16 relative border-t border-border mt-20">
       <div className="container mx-auto px-4">
+        {/* CTA Section */}
+        <div className="mb-20">
+          <div className="glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden border border-white/10 group hover:border-primary/50 transition-colors duration-500">
+            {/* Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-primary/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white tracking-tight">
+                Start Exploring
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
+                Animations, Components, Backgrounds - One Click Away
+              </p>
+              <a
+                href="/get-started/index"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+              >
+                Browse Components
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
