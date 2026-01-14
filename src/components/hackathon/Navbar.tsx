@@ -6,7 +6,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Tracks", href: "#tracks" },
   { name: "Prizes", href: "#prizes" },
-  { name: "Timeline", href: "#timeline" },
+
   { name: "Sponsors", href: "#sponsors" },
   { name: "Team", href: "#team" },
   { name: "FAQ", href: "#faq" },
@@ -26,13 +26,12 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass py-3" : "bg-transparent py-5"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass py-3" : "bg-transparent py-5"
+        }`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
         <a href="#" className="text-2xl font-bold text-gradient">
-          HACKATHON
+          CodeKar
         </a>
 
         {/* Desktop Navigation */}

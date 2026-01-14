@@ -79,8 +79,8 @@ const PersonCard = ({
 
 export const JudgesMentors = () => {
   return (
-    <section className="py-24 relative">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Judges Section */}
         <div className="mb-20">
           <div className="text-center mb-12">

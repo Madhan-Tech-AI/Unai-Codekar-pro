@@ -4,7 +4,7 @@ const quickLinks = [
   { name: "About", href: "#about" },
   { name: "Tracks", href: "#tracks" },
   { name: "Prizes", href: "#prizes" },
-  { name: "Timeline", href: "#timeline" },
+
   { name: "Sponsors", href: "#sponsors" },
   { name: "FAQ", href: "#faq" },
 ];
@@ -25,7 +25,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <a href="#" className="text-3xl font-bold text-gradient mb-4 block">
-              HACKATHON
+              CodeKar
             </a>
             <p className="text-muted-foreground mb-6 max-w-md">
               Join India's premier student hackathon and build solutions that
@@ -75,7 +75,7 @@ export const Footer = () => {
                 <Mail className="w-5 h-5 text-primary mt-0.5" />
                 <div>
                   <p className="text-muted-foreground">
-                    contact@hackathon.com
+                    contact@codekar.com
                   </p>
                 </div>
               </li>
@@ -89,9 +89,9 @@ export const Footer = () => {
                 <MapPin className="w-5 h-5 text-primary mt-0.5" />
                 <div>
                   <p className="text-muted-foreground">
-                    Your College Name,
+                    CodeKar HQ,
                     <br />
-                    City, State 123456
+                    Chennai, Tamil Nadu
                   </p>
                 </div>
               </li>
@@ -102,7 +102,7 @@ export const Footer = () => {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 Hackathon Name. All rights reserved.
+            © 2026 CodeKar. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Made with ❤️ by the Organizing Team

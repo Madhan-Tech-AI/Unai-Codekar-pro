@@ -39,8 +39,8 @@ const sponsorTiers = [
 
 export const Sponsors = () => {
   return (
-    <section id="sponsors" className="py-24 relative">
-      <div className="container mx-auto px-4">
+    <section id="sponsors" className="py-24 relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -59,33 +59,30 @@ export const Sponsors = () => {
                 {tier.tier}
               </h3>
               <div
-                className={`flex flex-wrap justify-center gap-4 ${
-                  tier.size === "large" ? "gap-8" : ""
-                }`}
+                className={`flex flex-wrap justify-center gap-4 ${tier.size === "large" ? "gap-8" : ""
+                  }`}
               >
                 {tier.sponsors.map((sponsor, sponsorIndex) => (
                   <div
                     key={sponsorIndex}
-                    className={`glass rounded-xl flex items-center justify-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 cursor-pointer ${
-                      tier.size === "large"
-                        ? "w-48 h-32 md:w-64 md:h-40"
-                        : tier.size === "medium"
+                    className={`glass rounded-xl flex items-center justify-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 cursor-pointer ${tier.size === "large"
+                      ? "w-48 h-32 md:w-64 md:h-40"
+                      : tier.size === "medium"
                         ? "w-36 h-24 md:w-48 md:h-32"
                         : tier.size === "small"
-                        ? "w-28 h-20 md:w-36 md:h-24"
-                        : "w-24 h-16 md:w-28 md:h-20"
-                    }`}
+                          ? "w-28 h-20 md:w-36 md:h-24"
+                          : "w-24 h-16 md:w-28 md:h-20"
+                      }`}
                   >
                     <div
-                      className={`font-bold text-muted-foreground group-hover:text-primary transition-colors ${
-                        tier.size === "large"
-                          ? "text-4xl md:text-5xl"
-                          : tier.size === "medium"
+                      className={`font-bold text-muted-foreground group-hover:text-primary transition-colors ${tier.size === "large"
+                        ? "text-4xl md:text-5xl"
+                        : tier.size === "medium"
                           ? "text-2xl md:text-3xl"
                           : tier.size === "small"
-                          ? "text-xl md:text-2xl"
-                          : "text-lg"
-                      }`}
+                            ? "text-xl md:text-2xl"
+                            : "text-lg"
+                        }`}
                     >
                       {sponsor.logo}
                     </div>
@@ -102,7 +99,7 @@ export const Sponsors = () => {
             Want to sponsor our hackathon?
           </p>
           <a
-            href="mailto:sponsors@hackathon.com"
+            href="mailto:sponsors@codekar.com"
             className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
           >
             Contact us for sponsorship opportunities

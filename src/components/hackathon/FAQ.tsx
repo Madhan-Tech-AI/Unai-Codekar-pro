@@ -50,8 +50,8 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="py-24 relative bg-muted/20">
-      <div className="container mx-auto px-4">
+    <section id="faq" className="py-24 relative bg-muted/20 overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -86,10 +86,10 @@ export const FAQ = () => {
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-2">Still have questions?</p>
           <a
-            href="mailto:contact@hackathon.com"
+            href="mailto:contact@codekar.com"
             className="text-primary hover:underline font-medium"
           >
-            Reach out to us at contact@hackathon.com
+            Reach out to us at contact@codekar.com
           </a>
         </div>
       </div>

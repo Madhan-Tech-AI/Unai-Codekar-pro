@@ -11,8 +11,8 @@ const galleryImages = [
 
 export const Gallery = () => {
   return (
-    <section className="py-24 relative bg-muted/20">
-      <div className="container mx-auto px-4">
+    <section className="py-24 relative bg-muted/20 overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -28,16 +28,14 @@ export const Gallery = () => {
           {galleryImages.map((image, index) => (
             <div
               key={image.id}
-              className={`glass rounded-xl overflow-hidden group cursor-pointer hover:card-glow transition-all duration-300 ${
-                index === 0 || index === 7 ? "md:col-span-2 md:row-span-2" : ""
-              }`}
+              className={`glass rounded-xl overflow-hidden group cursor-pointer hover:card-glow transition-all duration-300 ${index === 0 || index === 7 ? "md:col-span-2 md:row-span-2" : ""
+                }`}
             >
               <div
-                className={`bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center ${
-                  index === 0 || index === 7
-                    ? "aspect-square md:aspect-auto md:h-full"
-                    : "aspect-square"
-                }`}
+                className={`bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center ${index === 0 || index === 7
+                  ? "aspect-square md:aspect-auto md:h-full"
+                  : "aspect-square"
+                  }`}
               >
                 <div className="text-center p-4">
                   <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
