@@ -23,24 +23,15 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
 
 
         {/* Main title */}
-        <div className="flex flex-col items-center justify-center mb-6">
-          <GradientText
-            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-            animationSpeed={3}
-            showBorder={false}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold mb-2"
-          >
-            HACKATHON
-          </GradientText>
-          <GradientText
-            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-            animationSpeed={3}
-            showBorder={false}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold"
-          >
-            CodeKar 2026
-          </GradientText>
-        </div>
+        <GradientText
+          colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+          animationSpeed={3}
+          showBorder={false}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold"
+        >
+          CODEKAR
+        </GradientText>
+
 
         {/* Tagline */}
         <p className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
@@ -85,6 +76,6 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
         {/* Scroll indicator */}
 
       </div>
-    </section>
+    </section >
   );
 };
