@@ -4,7 +4,7 @@ import './MagicBento.css';
 
 const DEFAULT_PARTICLE_COUNT = 12;
 const DEFAULT_SPOTLIGHT_RADIUS = 300;
-const DEFAULT_GLOW_COLOR = '64, 255, 170'; // Changed to match theme #40ffaa
+const DEFAULT_GLOW_COLOR = '112, 132, 248'; // Cyan Glow from Logo
 const MOBILE_BREAKPOINT = 768;
 
 export interface BentoItem {
