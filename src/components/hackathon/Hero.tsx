@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import BlurText from "@/components/ui/BlurText";
+// @ts-ignore
+import GradientText from "@/components/GradientText";
 import { useEffect } from "react";
 
 export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
@@ -22,20 +24,22 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
 
         {/* Main title */}
         <div className="flex flex-col items-center justify-center mb-6">
-          <BlurText
-            text="HACKATHON"
-            delay={150}
-            animateBy="letters"
-            direction="top"
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold text-cyan-400 mb-2"
-          />
-          <BlurText
-            text="CodeKar 2026"
-            delay={150}
-            animateBy="letters"
-            direction="top"
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold text-white"
-          />
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold mb-2"
+          >
+            HACKATHON
+          </GradientText>
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={3}
+            showBorder={false}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold"
+          >
+            CodeKar 2026
+          </GradientText>
         </div>
 
         {/* Tagline */}

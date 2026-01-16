@@ -4,71 +4,78 @@
 
 @layer base {
   :root {
-    --background: 222 47% 4%;
-    --foreground: 195 100% 95%;
+    /* Homepage Colors */
+    --background: 236 68% 5%;       /* rgb(4, 5, 21) */
+    --foreground: 242 35% 80%;      /* rgb(187, 186, 222) */
 
-    --card: 222 47% 8%;
-    --card-foreground: 195 100% 95%;
+    --card: 226 16% 21%;            /* rgb(45, 49, 62) */
+    --card-foreground: 242 35% 80%;
 
-    --popover: 222 47% 6%;
-    --popover-foreground: 195 100% 95%;
+    --popover: 226 16% 21%;
+    --popover-foreground: 242 35% 80%;
 
-    --primary: 190 100% 50%;
-    --primary-foreground: 222 47% 4%;
+    --primary: 258 76% 64%;         /* rgb(135, 92, 233) */
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 220 50% 15%;
-    --secondary-foreground: 195 100% 95%;
+    --secondary: 241 59% 62%;       /* rgb(100, 99, 215) */
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 220 40% 12%;
-    --muted-foreground: 215 20% 60%;
+    --muted: 218 15% 28%;           /* rgb(60, 68, 82) */
+    --muted-foreground: 219 10% 53%; /* rgb(124, 132, 147) */
 
-    --accent: 190 100% 40%;
-    --accent-foreground: 222 47% 4%;
+    --accent: 238 35% 28%;          /* rgb(46, 48, 95) */
+    --accent-foreground: 242 35% 80%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 40% 18%;
-    --input: 220 40% 15%;
-    --ring: 190 100% 50%;
+    --border: 221 10% 37%;          /* rgb(84, 90, 103) */
+    --input: 221 10% 37%;
+    --ring: 258 76% 64%;
 
     --radius: 1rem;
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 195 100% 95%;
-    --sidebar-primary: 190 100% 50%;
-    --sidebar-primary-foreground: 222 47% 4%;
-    --sidebar-accent: 220 40% 15%;
-    --sidebar-accent-foreground: 195 100% 95%;
-    --sidebar-border: 220 40% 18%;
-    --sidebar-ring: 190 100% 50%;
+    --sidebar-background: 236 68% 5%;
+    --sidebar-foreground: 242 35% 80%;
+    --sidebar-primary: 258 76% 64%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 238 35% 28%;
+    --sidebar-accent-foreground: 242 35% 80%;
+    --sidebar-border: 221 10% 37%;
+    --sidebar-ring: 258 76% 64%;
 
-    /* Custom hackathon colors */
-    --cyan-glow: 190 100% 50%;
-    --blue-deep: 220 80% 30%;
-    --gradient-start: 190 100% 50%;
-    --gradient-end: 260 80% 60%;
+    /* Custom hackathon colors & Logo Colors */
+    --cyan-glow: 231 92% 71%;       /* rgb(112, 132, 248) - from logo */
+    --blue-deep: 238 35% 28%;       /* rgb(46, 48, 95) */
+    --gradient-start: 258 76% 64%;  /* Primary */
+    --gradient-end: 241 59% 62%;    /* Secondary */
+
+    --logo-1: 238 89% 86%; /* rgb(186, 188, 252) */
+    --logo-2: 240 88% 67%; /* rgb(100, 100, 244) */
+    --logo-3: 239 93% 78%; /* rgb(148, 150, 252) */
+    --logo-4: 240 93% 82%; /* rgb(164, 164, 252) */
+    --logo-5: 235 91% 80%; /* rgb(156, 164, 252) */
   }
 
   .dark {
-    --background: 222 47% 4%;
-    --foreground: 195 100% 95%;
-    --card: 222 47% 8%;
-    --card-foreground: 195 100% 95%;
-    --popover: 222 47% 6%;
-    --popover-foreground: 195 100% 95%;
-    --primary: 190 100% 50%;
-    --primary-foreground: 222 47% 4%;
-    --secondary: 220 50% 15%;
-    --secondary-foreground: 195 100% 95%;
-    --muted: 220 40% 12%;
-    --muted-foreground: 215 20% 60%;
-    --accent: 190 100% 40%;
-    --accent-foreground: 222 47% 4%;
+    --background: 236 68% 5%;
+    --foreground: 242 35% 80%;
+    --card: 226 16% 21%;
+    --card-foreground: 242 35% 80%;
+    --popover: 226 16% 21%;
+    --popover-foreground: 242 35% 80%;
+    --primary: 258 76% 64%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 241 59% 62%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 218 15% 28%;
+    --muted-foreground: 219 10% 53%;
+    --accent: 238 35% 28%;
+    --accent-foreground: 242 35% 80%;
     --destructive: 0 62% 30%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 40% 18%;
-    --input: 220 40% 15%;
-    --ring: 190 100% 50%;
+    --border: 221 10% 37%;
+    --input: 221 10% 37%;
+    --ring: 258 76% 64%;
   }
 }
 
