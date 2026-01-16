@@ -1,18 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import BlurText from "@/components/ui/BlurText";
-import FallingText from "@/components/ui/FallingText";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
-  const [showHero, setShowHero] = useState(false);
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowHero(true);
-      if (onIntroComplete) onIntroComplete();
-    }, 4000); // Show Hero after 4 seconds of falling text
-    return () => clearTimeout(timer);
+    if (onIntroComplete) onIntroComplete();
   }, [onIntroComplete]);
 
   return (
@@ -23,90 +16,71 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
 
       {/* Grid overlay */}
 
-      {!showHero ? (
-        <div className="absolute inset-0 z-50 flex items-center justify-center">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/30 rounded-full blur-[100px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/30 rounded-full blur-[100px] animate-pulse delay-1000" />
-          <FallingText
-            text="CODE KAR"
-            highlightWords={["CODE", "KAR"]}
-            highlightClass="text-cyan-400 font-bold"
-            trigger="auto"
-            backgroundColor="transparent"
-            wireframes={false}
-            gravity={0.56}
-            fontSize="clamp(3rem, 10vw, 5rem)"
-            mouseConstraintStiffness={0.9}
-            className="h-full w-full"
+      <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
+        {/* Event badge */}
+
+
+        {/* Main title */}
+        <div className="flex flex-col items-center justify-center mb-6">
+          <BlurText
+            text="HACKATHON"
+            delay={150}
+            animateBy="letters"
+            direction="top"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold text-cyan-400 mb-2"
+          />
+          <BlurText
+            text="CodeKar 2026"
+            delay={150}
+            animateBy="letters"
+            direction="top"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold text-white"
           />
         </div>
-      ) : (
-        <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
-          {/* Event badge */}
 
+        {/* Tagline */}
+        <p className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
+          Innovation, Creativity, and Building the Future
+        </p>
 
-          {/* Main title */}
-          <div className="flex flex-col items-center justify-center mb-6">
-            <BlurText
-              text="HACKATHON"
-              delay={150}
-              animateBy="letters"
-              direction="top"
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold text-cyan-400 mb-2"
-            />
-            <BlurText
-              text="CodeKar 2026"
-              delay={150}
-              animateBy="letters"
-              direction="top"
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold text-white"
-            />
+        {/* Event details */}
+        <div className="flex flex-wrap justify-center gap-6 3xl:gap-12 mb-10 3xl:mb-16 animate-fade-in-up animation-delay-600">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
+            <Calendar className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
+            <span>February 15-17, 2026</span>
           </div>
 
-          {/* Tagline */}
-          <p className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
-            Innovation, Creativity, and Building the Future
-          </p>
-
-          {/* Event details */}
-          <div className="flex flex-wrap justify-center gap-6 3xl:gap-12 mb-10 3xl:mb-16 animate-fade-in-up animation-delay-600">
-            <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
-              <Calendar className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
-              <span>February 15-17, 2026</span>
-            </div>
-
-            <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
-              <MapPin className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
-              <span>Chennai,Tamil Nadu</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
-              <Users className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
-              <span>50+ Hackers</span>
-            </div>
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
+            <MapPin className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
+            <span>Chennai,Tamil Nadu</span>
           </div>
-
-          {/* CTA buttons */}
-          <div className="flex flex-wrap justify-center gap-4 3xl:gap-8 animate-fade-in-up animation-delay-600">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 card-glow"
-            >
-              Apply Now
-              <ArrowRight className="ml-2 w-5 h-5 3xl:w-8 3xl:h-8" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary/50 text-primary hover:bg-primary/10 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8"
-            >
-              Join Community
-            </Button>
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
+            <Users className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
+            <span>50+ Hackers</span>
           </div>
-
-          {/* Scroll indicator */}
-
         </div>
-      )}
+
+        {/* CTA buttons */}
+        <div className="flex flex-wrap justify-center gap-4 3xl:gap-8 animate-fade-in-up animation-delay-600">
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 card-glow"
+          >
+            Apply Now
+            <ArrowRight className="ml-2 w-5 h-5 3xl:w-8 3xl:h-8" />
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-primary/50 text-primary hover:bg-primary/10 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8"
+          >
+            Join Community
+          </Button>
+        </div>
+
+        {/* Scroll indicator */}
+
+      </div>
     </section>
   );
 };

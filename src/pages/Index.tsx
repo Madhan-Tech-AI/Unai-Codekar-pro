@@ -11,11 +11,9 @@ import { Team } from "@/components/hackathon/Team";
 import { FAQ } from "@/components/hackathon/FAQ";
 import { Footer } from "@/components/hackathon/Footer";
 
-import Hyperspeed, { hyperspeedPresets } from "@/components/ui/Hyperspeed";
-import LightPillar from "@/components/ui/LightPillar";
-
 import { useState } from "react";
-// ... existing imports
+// @ts-ignore
+import LaserFlow from "@/components/LaserFlow";
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -23,20 +21,23 @@ const Index = () => {
   return (
     <main className="min-h-screen bg-background relative">
       <div className="fixed inset-0 z-0 text-white bg-black">
-        <Hyperspeed effectOptions={hyperspeedPresets.one} />
-        <LightPillar
-          topColor="#5227FF"
-          bottomColor="#FF9FFC"
-          intensity={1.0}
-          rotationSpeed={0.3}
-          glowAmount={0.005}
-          pillarWidth={3.0}
-          pillarHeight={0.4}
-          noiseIntensity={0.5}
-          pillarRotation={0}
-          interactive={false}
-          mixBlendMode="screen"
-        />
+        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+          <LaserFlow
+            color="#a27aff"
+            wispDensity={1}
+            flowSpeed={0.35}
+            verticalSizing={2}
+            horizontalSizing={0.5}
+            fogIntensity={0.45}
+            fogScale={0.3}
+            wispSpeed={15}
+            wispIntensity={5}
+            flowStrength={0.25}
+            decay={1.1}
+            horizontalBeamOffset={0}
+            verticalBeamOffset={-0.5}
+          />
+        </div>
       </div>
       <div className="relative z-10">
         {showNavbar && <Navbar />}
@@ -52,7 +53,7 @@ const Index = () => {
         <FAQ />
         <Footer />
       </div>
-    </main>
+    </main >
   );
 };
 
