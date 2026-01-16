@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { Users, Building2, MapPin, Trophy } from "lucide-react";
+import { Users, Building2, MapPin, Trophy, Eye, Target } from "lucide-react";
+import MagicBento, { BentoItem } from "@/components/ui/MagicBento";
 
 const stats = [
   { icon: Users, value: 5000, suffix: "+", label: "Total Registrations" },
@@ -72,7 +73,7 @@ export const About = () => {
         {/* Section header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">About</span> The Hackathon
+            <span className="text-gradient">About Us</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Join the ultimate innovation challenge where brilliant minds come
@@ -81,41 +82,48 @@ export const About = () => {
         </div>
 
         {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <div className="glass rounded-2xl p-8 card-glow">
-            <h3 className="text-2xl font-bold text-primary mb-4">Our Vision</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              To create India's largest student-run hackathon ecosystem that
-              empowers the next generation of innovators, entrepreneurs, and
-              problem-solvers. We believe in the power of collaboration,
-              creativity, and technology to solve real-world challenges.
-            </p>
-          </div>
-          <div className="glass rounded-2xl p-8 card-glow">
-            <h3 className="text-2xl font-bold text-primary mb-4">Our Mission</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              To provide a platform where students from diverse backgrounds can
-              showcase their skills, learn from industry experts, network with
-              like-minded individuals, and transform innovative ideas into
-              impactful solutions that benefit society.
-            </p>
-          </div>
+        <div className="mb-16">
+          <MagicBento
+            items={[
+              {
+                title: "Our Vision",
+                description:
+                  "To create India's largest student-run hackathon ecosystem that empowers the next generation of innovators, entrepreneurs, and problem-solvers. We believe in the power of collaboration, creativity, and technology to solve real-world challenges.",
+                label: "Vision",
+                header: <Eye className="w-8 h-8 text-primary mb-2" />,
+              },
+              {
+                title: "Our Mission",
+                description:
+                  "To provide a platform where students from diverse backgrounds can showcase their skills, learn from industry experts, network with like-minded individuals, and transform innovative ideas into impactful solutions that benefit society.",
+                label: "Mission",
+                header: <Target className="w-8 h-8 text-primary mb-2" />,
+              },
+            ]}
+            gridClassName="grid-cols-1 md:grid-cols-2 gap-8"
+            spotlightRadius={200}
+          />
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="glass rounded-2xl p-6 text-center hover:card-glow transition-all duration-300 group"
-            >
-              <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <div className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                <CounterAnimation target={stat.value} suffix={stat.suffix} />
-              </div>
-              <p className="text-sm text-muted-foreground">{stat.label}</p>
-            </div>
-          ))}
+        {/* Stats */}
+        <div>
+          <MagicBento
+            items={stats.map((stat) => ({
+              title: (
+                <div className="text-3xl md:text-4xl font-bold text-white">
+                  <CounterAnimation target={stat.value} suffix={stat.suffix} />
+                </div>
+              ),
+              description: stat.label,
+              label: "Stats",
+              header: (
+                <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
+              ),
+            }))}
+            gridClassName="grid-cols-2 md:grid-cols-4 gap-6"
+            spotlightRadius={150}
+          />
         </div>
       </div>
     </section>
