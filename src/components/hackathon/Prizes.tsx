@@ -58,7 +58,7 @@ export const Prizes = () => {
           {mainPrizes.map((prize, index) => (
             <div
               key={index}
-              className={`glass rounded-2xl p-8 text-center hover:card-glow transition-all duration-300 group border ${prize.borderColor} hover:-translate-y-2`}
+              className={` rounded-2xl p-8 text-center hover:card-glow transition-all duration-300 group border ${prize.borderColor} hover:-translate-y-2`}
             >
               <div
                 className={`w-20 h-20 rounded-full bg-gradient-to-br ${prize.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
@@ -83,7 +83,7 @@ export const Prizes = () => {
           {specialPrizes.map((prize, index) => (
             <div
               key={index}
-              className="glass rounded-2xl p-6 flex items-center gap-6 hover:card-glow transition-all duration-300 group border border-primary/20 hover:border-primary/50"
+              className=" rounded-2xl p-6 flex items-center gap-6 hover:card-glow transition-all duration-300 group border border-primary/20 hover:border-primary/50"
             >
               <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                 <prize.icon className="w-8 h-8 text-primary" />

@@ -25,7 +25,7 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
         {/* Main title */}
         <GradientText
           colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-          animationSpeed={3}
+          animationSpeed={10}
           showBorder={false}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold"
         >

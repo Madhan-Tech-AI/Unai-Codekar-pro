@@ -11,7 +11,7 @@ const galleryImages = [
 
 export const Gallery = () => {
   return (
-    <section className="py-24 relative bg-muted/20 overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -28,7 +28,7 @@ export const Gallery = () => {
           {galleryImages.map((image, index) => (
             <div
               key={image.id}
-              className={`glass rounded-xl overflow-hidden group cursor-pointer hover:card-glow transition-all duration-300 ${index === 0 || index === 7 ? "md:col-span-2 md:row-span-2" : ""
+              className={` rounded-xl overflow-hidden group cursor-pointer hover:card-glow transition-all duration-300 ${index === 0 || index === 7 ? "md:col-span-2 md:row-span-2" : ""
                 }`}
             >
               <div

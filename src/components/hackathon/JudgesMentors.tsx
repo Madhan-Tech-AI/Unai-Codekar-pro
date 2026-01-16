@@ -61,7 +61,7 @@ const PersonCard = ({
 }: {
   person: { name: string; role: string; company: string };
 }) => (
-  <div className="glass rounded-2xl p-6 text-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 hover:-translate-y-1">
+  <div className=" rounded-2xl p-6 text-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 hover:-translate-y-1">
     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary">
       {person.name.charAt(0)}
     </div>

@@ -19,7 +19,7 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="py-16 relative border-t border-border">
+    <footer className="py-16 relative">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
@@ -100,12 +100,12 @@ export const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
             © 2026 CodeKar. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            Made with ❤️ by the Organizing Team
+            UNAI Crafted
           </p>
         </div>
       </div>
