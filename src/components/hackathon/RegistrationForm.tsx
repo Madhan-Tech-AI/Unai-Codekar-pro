@@ -3,6 +3,7 @@ import { X, Plus, Trash2, Users, User, Mail, Phone, Briefcase, Github, Graduatio
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { GOOGLE_SCRIPT_URL } from "@/lib/google-sheet-config";
 
 interface TeamMember {
     id: string;
@@ -16,8 +17,6 @@ interface RegistrationFormProps {
     isOpen: boolean;
     onClose: () => void;
 }
-
-import { GOOGLE_SCRIPT_URL } from "@/lib/google-sheet-config";
 
 export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => {
     const [teamName, setTeamName] = useState("");
@@ -99,7 +98,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto"
+                    className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto"
                 >
                     <motion.div
                         initial={{ scale: 0.95, opacity: 0, y: 20 }}

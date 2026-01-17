@@ -25,8 +25,8 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background relative">
-      <div className="fixed inset-0 z-0 text-white bg-black">
-        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}>
+      <div className="fixed inset-0 z-0 text-white bg-black pointer-events-none">
+        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }} className="pointer-events-none">
           <LaserFlow
             color="#a27aff"
             wispDensity={1}
@@ -45,9 +45,18 @@ const Index = () => {
         </div>
       </div>
       <div className="relative z-10">
-        <RegistrationForm isOpen={isRegistrationOpen} onClose={() => setIsRegistrationOpen(false)} />
-        {showNavbar && <Navbar onApplyClick={() => setIsRegistrationOpen(true)} />}
-        <Hero onIntroComplete={() => setShowNavbar(true)} onApplyClick={() => setIsRegistrationOpen(true)} />
+
+        {showNavbar && <Navbar onApplyClick={() => {
+          console.log("Navbar Apply Clicked");
+          setIsRegistrationOpen(true);
+        }} />}
+        <Hero
+          onIntroComplete={() => setShowNavbar(true)}
+          onApplyClick={() => {
+            console.log("Hero Apply Clicked - Opening Registration");
+            setIsRegistrationOpen(true);
+          }}
+        />
         <About />
         <Domains />
         <Prizes />
@@ -59,6 +68,7 @@ const Index = () => {
         <FAQ />
         <Footer />
       </div>
+      <RegistrationForm isOpen={isRegistrationOpen} onClose={() => setIsRegistrationOpen(false)} />
     </main >
   );
 };

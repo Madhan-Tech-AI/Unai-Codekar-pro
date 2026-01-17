@@ -12,13 +12,8 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in">
-
-
       {/* Grid overlay */}
-
       <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
-        {/* Event badge */}
-
 
         {/* Main title */}
         <GradientText
@@ -54,11 +49,12 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
         </div>
 
         {/* CTA buttons */}
-        <div className="flex flex-wrap justify-center gap-4 3xl:gap-8 animate-fade-in-up animation-delay-600">
+        <div className="relative z-[50] flex flex-wrap justify-center gap-4 3xl:gap-8 animate-fade-in-up animation-delay-600">
           <Button
             size="lg"
             onClick={onApplyClick}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 card-glow"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 shadow-lg shadow-primary/20 cursor-pointer pointer-events-auto relative z-50 transition-transform duration-300 hover:scale-105 active:scale-95"
+            style={{ zIndex: 9999 }}
           >
             Apply Now
             <ArrowRight className="ml-2 w-5 h-5 3xl:w-8 3xl:h-8" />
@@ -66,14 +62,11 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
           <Button
             size="lg"
             variant="outline"
-            className="border-primary/50 text-primary hover:bg-primary/10 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8"
+            className="border-primary/50 text-primary hover:bg-primary/10 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 cursor-pointer pointer-events-auto relative z-50"
           >
             Join Community
           </Button>
         </div>
-
-        {/* Scroll indicator */}
-
       </div>
     </section >
   );
