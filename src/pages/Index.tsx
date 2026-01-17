@@ -10,6 +10,7 @@ import { Gallery } from "@/components/hackathon/Gallery";
 import { Team } from "@/components/hackathon/Team";
 import { FAQ } from "@/components/hackathon/FAQ";
 import { Footer } from "@/components/hackathon/Footer";
+import { RegistrationForm } from "@/components/hackathon/RegistrationForm";
 
 import { useState } from "react";
 // @ts-ignore
@@ -19,6 +20,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const isMobile = useIsMobile();
 
   return (
@@ -43,8 +45,9 @@ const Index = () => {
         </div>
       </div>
       <div className="relative z-10">
-        {showNavbar && <Navbar />}
-        <Hero onIntroComplete={() => setShowNavbar(true)} />
+        <RegistrationForm isOpen={isRegistrationOpen} onClose={() => setIsRegistrationOpen(false)} />
+        {showNavbar && <Navbar onApplyClick={() => setIsRegistrationOpen(true)} />}
+        <Hero onIntroComplete={() => setShowNavbar(true)} onApplyClick={() => setIsRegistrationOpen(true)} />
         <About />
         <Domains />
         <Prizes />

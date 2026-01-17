@@ -5,7 +5,7 @@ import BlurText from "@/components/ui/BlurText";
 import GradientText from "@/components/GradientText";
 import { useEffect } from "react";
 
-export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
+export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () => void; onApplyClick?: () => void }) => {
   useEffect(() => {
     if (onIntroComplete) onIntroComplete();
   }, [onIntroComplete]);
@@ -57,6 +57,7 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
         <div className="flex flex-wrap justify-center gap-4 3xl:gap-8 animate-fade-in-up animation-delay-600">
           <Button
             size="lg"
+            onClick={onApplyClick}
             className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 card-glow"
           >
             Apply Now

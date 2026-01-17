@@ -13,7 +13,7 @@ const navLinks = [
   { name: "FAQ", url: "#faq", icon: HelpCircle },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -37,7 +37,10 @@ export const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 3xl:gap-12">
           <NavBar items={navLinks} />
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 3xl:text-lg 3xl:px-8 3xl:py-6">
+          <Button
+            onClick={onApplyClick}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 3xl:text-lg 3xl:px-8 3xl:py-6"
+          >
             Apply Now
           </Button>
         </div>
@@ -65,7 +68,13 @@ export const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onApplyClick?.();
+              }}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
               Apply Now
             </Button>
           </div>
