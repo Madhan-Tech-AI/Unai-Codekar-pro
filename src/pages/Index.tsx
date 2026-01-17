@@ -14,10 +14,12 @@ import { Footer } from "@/components/hackathon/Footer";
 import { useState } from "react";
 // @ts-ignore
 import LaserFlow from "@/components/LaserFlow";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <main className="min-h-screen bg-background relative">
@@ -27,12 +29,12 @@ const Index = () => {
             color="#a27aff"
             wispDensity={1}
             flowSpeed={0.35}
-            verticalSizing={2}
-            horizontalSizing={0.5}
-            fogIntensity={0.2}
+            verticalSizing={isMobile ? 3 : 2}
+            horizontalSizing={isMobile ? 0.8 : 0.5}
+            fogIntensity={isMobile ? 0.1 : 0.2}
             fogScale={0.3}
             wispSpeed={15}
-            wispIntensity={3}
+            wispIntensity={isMobile ? 2 : 3}
             flowStrength={0.25}
             decay={1.1}
             horizontalBeamOffset={0}
