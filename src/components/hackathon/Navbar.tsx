@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { Home, Info, Trophy, Gift, Users, HelpCircle, Handshake } from "lucide-react";
 
 const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Tracks", href: "#tracks" },
-  { name: "Prizes", href: "#prizes" },
-
-  { name: "Sponsors", href: "#sponsors" },
-  { name: "Team", href: "#team" },
-  { name: "FAQ", href: "#faq" },
+  { name: "About", url: "#about", icon: Info },
+  { name: "Tracks", url: "#tracks", icon: Trophy },
+  { name: "Prizes", url: "#prizes", icon: Gift },
+  { name: "Sponsors", url: "#sponsors", icon: Handshake },
+  { name: "Team", url: "#team", icon: Users },
+  { name: "FAQ", url: "#faq", icon: HelpCircle },
 ];
 
 export const Navbar = () => {
@@ -26,8 +27,7 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass py-3 3xl:py-5" : "bg-transparent py-5 3xl:py-10"
-        }`}
+      className="fixed top-0 left-0 right-0 z-50 py-5 3xl:py-10 transition-all duration-300 bg-transparent"
     >
       <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
         <a href="#" className="text-2xl 3xl:text-4xl font-bold text-gradient">
@@ -36,15 +36,7 @@ export const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 3xl:gap-12">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm 3xl:text-xl font-medium text-slate-300 hover:text-primary transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+          <NavBar items={navLinks} />
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90 3xl:text-lg 3xl:px-8 3xl:py-6">
             Apply Now
           </Button>
@@ -66,7 +58,7 @@ export const Navbar = () => {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={link.url}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
