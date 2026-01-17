@@ -29,16 +29,16 @@ const Index = () => {
             color="#a27aff"
             wispDensity={1}
             flowSpeed={0.35}
-            verticalSizing={isMobile ? 3 : 2}
-            horizontalSizing={isMobile ? 0.8 : 0.5}
-            fogIntensity={isMobile ? 0.1 : 0.2}
-            fogScale={0.3}
+            verticalSizing={isMobile ? 8 : 2}
+            horizontalSizing={isMobile ? 1.2 : 0.5}
+            fogIntensity={isMobile ? 0.3 : 0.2}
+            fogScale={isMobile ? 0.5 : 0.3}
             wispSpeed={15}
-            wispIntensity={isMobile ? 2 : 3}
+            wispIntensity={isMobile ? 4 : 3}
             flowStrength={0.25}
             decay={1.1}
             horizontalBeamOffset={0}
-            verticalBeamOffset={-0.5}
+            verticalBeamOffset={isMobile ? -0.2 : -0.5}
           />
         </div>
       </div>
