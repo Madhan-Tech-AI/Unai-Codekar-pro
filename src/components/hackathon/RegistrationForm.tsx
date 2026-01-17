@@ -17,6 +17,8 @@ interface RegistrationFormProps {
     onClose: () => void;
 }
 
+import { GOOGLE_SCRIPT_URL } from "@/lib/google-sheet-config";
+
 export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => {
     const [teamName, setTeamName] = useState("");
     const [projectIdea, setProjectIdea] = useState("");
@@ -26,9 +28,6 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
     const [members, setMembers] = useState<TeamMember[]>([
         { id: "1", name: "", email: "", role: "Leader" },
     ]);
-
-    // REPLACE WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
-    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
 
 
     const addMember = () => {
@@ -55,12 +54,6 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
-            alert("Please set up the Google Sheet script first! See the instructions.");
-            console.error("Google Script URL is not set.");
-            return;
-        }
-
         setIsSubmitting(true);
 
         const formData = {
@@ -72,22 +65,28 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             submittedAt: new Date().toISOString(),
         };
 
+        // Check if the script URL is configured
+        // Check if the script URL is configured
+        if (!GOOGLE_SCRIPT_URL) {
+            alert("Error: Google Script URL is not configured. Please check src/lib/google-sheet-config.ts");
+            setIsSubmitting(false);
+            return;
+        }
+
         try {
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
-                mode: "no-cors", // Important for Google Apps Script
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
             console.log("Registration Data Submitted:", formData);
-            alert("Registration successful! Welcome to CodeKar.");
+            alert("✅ SUCCESS: Registration saved to Google Sheet!");
             onClose();
         } catch (error) {
             console.error("Error submitting form", error);
-            alert("There was an error submitting your registration. Please try again.");
+            alert("❌ Error: Could not save to Google Sheet. Check console.");
         } finally {
             setIsSubmitting(false);
         }

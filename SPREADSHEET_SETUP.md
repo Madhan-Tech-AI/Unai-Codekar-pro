@@ -5,7 +5,7 @@ Currently, your application is ready to send registration data, but it needs a *
 Follow these exact steps to make it work:
 
 ### Step 1: Open Your Google Sheet
-1. Go to your Google Sheet: [https://docs.google.com/spreadsheets/d/1FcovU6NBLez4mKKxT0_LCxISIHs94EFVsCa0Ccu20k0/edit](https://docs.google.com/spreadsheets/d/1FcovU6NBLez4mKKxT0_LCxISIHs94EFVsCa0Ccu20k0/edit)
+1. Go to your Google Sheet: [https://docs.google.com/spreadsheets/d/1FcovU6NBLez4mKKxT0_LCxISIHs94EFVsCa0Ccu20k0/edit](https://docs.google.com/spreadsheets/d/1FcovU6NBLez4mKKxT0_LCxISIHs94EFVsCa0Ccu20k0/edit?usp=sharing)
 2. In the menu bar, click on **Extensions** > **Apps Script**.
 
 ### Step 2: Paste the Script Code
@@ -19,55 +19,82 @@ function doPost(e) {
   lock.tryLock(10000);
 
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
     var rawData = e.postData.contents;
     var data = JSON.parse(rawData);
-    
-    // Prepare the timestamp
     var timestamp = new Date();
-    
-    // Check if the header row exists, if not create it
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow([
-        "Timestamp", 
-        "Type", 
-        "Team Name", 
-        "Track", 
-        "Idea", 
-        "Leader Name", "Leader Email", "Leader Link",
-        "Member 2 Name", "Member 2 Email",
-        "Member 3 Name", "Member 3 Email",
-        "Member 4 Name", "Member 4 Email"
-      ]);
+
+    // 1. Determine which Sheet (Tab) to use
+    var isIndividual = (data.registrationType === 'individual');
+    var sheetName = isIndividual ? "Individual_Registrations" : "Team_Registrations";
+    var sheet = ss.getSheetByName(sheetName);
+
+    // 2. Create the sheet if it doesn't exist
+    if (!sheet) {
+      sheet = ss.insertSheet(sheetName);
+      if (isIndividual) {
+        // Headers for Individual
+        sheet.appendRow([
+          "Timestamp", 
+          "Full Name", 
+          "Email", 
+          "Project Track", 
+          "Project Idea"
+        ]);
+      } else {
+        // Headers for Team
+        sheet.appendRow([
+          "Timestamp", 
+          "Team Name", 
+          "Project Track", 
+          "Project Idea", 
+          "Leader Name", "Leader Email", "Leader Link",
+          "Member 2 Name", "Member 2 Email",
+          "Member 3 Name", "Member 3 Email",
+          "Member 4 Name", "Member 4 Email"
+        ]);
+      }
     }
 
-    // Helper to get member info safely
-    function getMember(index, field) {
-      return (data.members && data.members[index]) ? data.members[index][field] : "";
+    // 3. Prepare the data row
+    var row = [];
+    if (isIndividual) {
+      // --- INDIVIDUAL DATA ---
+      var person = (data.members && data.members[0]) ? data.members[0] : {};
+      row = [
+        timestamp,
+        person.name || "",
+        person.email || "",
+        data.projectTrack || "",
+        data.projectIdea || ""
+      ];
+    } else {
+      // --- TEAM DATA ---
+      function getMember(index, field) {
+        return (data.members && data.members[index]) ? data.members[index][field] : "";
+      }
+      row = [
+        timestamp,
+        data.teamName || "",
+        data.projectTrack || "",
+        data.projectIdea || "",
+        // Leader
+        getMember(0, "name"),
+        getMember(0, "email"),
+        getMember(0, "github"),
+        // Member 2
+        getMember(1, "name"),
+        getMember(1, "email"),
+        // Member 3
+        getMember(2, "name"),
+        getMember(2, "email"),
+        // Member 4
+        getMember(3, "name"),
+        getMember(3, "email")
+      ];
     }
 
-    // Create the row data
-    var row = [
-      timestamp,
-      data.registrationType,
-      data.teamName || "(Individual)",
-      data.projectTrack,
-      data.projectIdea,
-      // Leader (Member 0)
-      getMember(0, "name"),
-      getMember(0, "email"),
-      getMember(0, "github") || "", // Leader link
-      // Member 2
-      getMember(1, "name"),
-      getMember(1, "email"),
-      // Member 3
-      getMember(2, "name"),
-      getMember(2, "email"),
-      // Member 4
-      getMember(3, "name"),
-      getMember(3, "email")
-    ];
-
+    // 4. Save to sheet
     sheet.appendRow(row);
 
     return ContentService.createTextOutput(JSON.stringify({ "result": "success" }))
