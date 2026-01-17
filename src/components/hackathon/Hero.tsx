@@ -12,9 +12,7 @@ export const Hero = ({ onIntroComplete }: { onIntroComplete?: () => void }) => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in">
-      {/* Animated gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/30 rounded-full blur-[100px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/30 rounded-full blur-[100px] animate-pulse delay-1000" />
+
 
       {/* Grid overlay */}
 

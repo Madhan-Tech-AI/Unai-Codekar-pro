@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone, Instagram, Linkedin, Twitter, Github, MessageCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Instagram, Linkedin, X } from "lucide-react";
 
 const quickLinks = [
   { name: "About", href: "#about" },
@@ -10,11 +10,9 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: MessageCircle, href: "#", label: "Discord" },
+  { icon: Instagram, href: "https://www.instagram.com/unai.tech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/unai-tech-2177072a0/", label: "LinkedIn" },
+  { icon: X, href: "https://x.com/UnaiTech74505?s=20", label: "X" },
 ];
 
 export const Footer = () => {
@@ -74,22 +72,24 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-primary mt-0.5" />
                 <div>
-                  <p className="text-muted-foreground">
-                    contact@codekar.com
-                  </p>
+                  <a href="mailto:contact@UNAI.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    contact@UNAI.com
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-primary mt-0.5" />
                 <div>
-                  <p className="text-muted-foreground">+91 98765 43210</p>
+                  <a href="tel:+918428293603" className="text-muted-foreground hover:text-primary transition-colors">
+                    +91 84282 93603
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary mt-0.5" />
                 <div>
                   <p className="text-muted-foreground">
-                    CodeKar HQ,
+                    UNAI Tech,
                     <br />
                     Chennai, Tamil Nadu
                   </p>

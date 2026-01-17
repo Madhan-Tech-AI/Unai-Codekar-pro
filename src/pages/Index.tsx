@@ -15,6 +15,7 @@ import { useState } from "react";
 // @ts-ignore
 import LaserFlow from "@/components/LaserFlow";
 
+
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
 
@@ -28,10 +29,10 @@ const Index = () => {
             flowSpeed={0.35}
             verticalSizing={2}
             horizontalSizing={0.5}
-            fogIntensity={0.45}
+            fogIntensity={0.2}
             fogScale={0.3}
             wispSpeed={15}
-            wispIntensity={5}
+            wispIntensity={3}
             flowStrength={0.25}
             decay={1.1}
             horizontalBeamOffset={0}
