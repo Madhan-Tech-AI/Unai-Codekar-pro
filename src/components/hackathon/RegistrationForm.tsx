@@ -20,10 +20,16 @@ interface RegistrationFormProps {
 export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => {
     const [teamName, setTeamName] = useState("");
     const [projectIdea, setProjectIdea] = useState("");
+    const [projectTrack, setProjectTrack] = useState("");
     const [registrationType, setRegistrationType] = useState<'individual' | 'team'>('team');
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [members, setMembers] = useState<TeamMember[]>([
         { id: "1", name: "", email: "", role: "Leader" },
     ]);
+
+    // REPLACE WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
+    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE";
+
 
     const addMember = () => {
         if (members.length < 4) {
@@ -46,18 +52,45 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
         );
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE") {
+            alert("Please set up the Google Sheet script first! See the instructions.");
+            console.error("Google Script URL is not set.");
+            return;
+        }
+
+        setIsSubmitting(true);
+
         const formData = {
             registrationType,
             teamName: registrationType === 'team' ? teamName : undefined,
+            projectTrack,
             projectIdea,
             members,
             submittedAt: new Date().toISOString(),
         };
-        console.log("Registration Data:", formData);
-        alert("Registration submitted! Check console for data.");
-        onClose();
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors", // Important for Google Apps Script
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            console.log("Registration Data Submitted:", formData);
+            alert("Registration successful! Welcome to CodeKar.");
+            onClose();
+        } catch (error) {
+            console.error("Error submitting form", error);
+            alert("There was an error submitting your registration. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -156,8 +189,10 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-foreground">Project Track</label>
                                         <select
+                                            required
+                                            value={projectTrack}
+                                            onChange={(e) => setProjectTrack(e.target.value)}
                                             className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
-                                            defaultValue=""
                                         >
                                             <option value="" disabled>Select a track</option>
                                             <option value="web3">Web3 & Blockchain</option>
@@ -292,9 +327,10 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                             <div className="pt-4 border-t border-border">
                                 <Button
                                     type="submit"
-                                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-lg shadow-lg shadow-primary/20 transition-all hover:scale-[1.02]"
+                                    disabled={isSubmitting}
+                                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-lg shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    Confirm Registration
+                                    {isSubmitting ? "Registering..." : "Confirm Registration"}
                                 </Button>
                                 <p className="text-center text-muted-foreground text-xs mt-3">
                                     By registering, you agree to our Code of Conduct and Terms.
