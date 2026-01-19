@@ -9,8 +9,6 @@ const navLinks = [
   { name: "Tracks", url: "#tracks", icon: Trophy },
   { name: "Prizes", url: "#prizes", icon: Gift },
   { name: "Sponsors", url: "#sponsors", icon: Handshake },
-  { name: "Team", url: "#team", icon: Users },
-  { name: "FAQ", url: "#faq", icon: HelpCircle },
 ];
 
 export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {

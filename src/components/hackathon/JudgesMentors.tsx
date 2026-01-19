@@ -23,38 +23,7 @@ const judges = [
   },
 ];
 
-const mentors = [
-  {
-    name: "Vikram Singh",
-    role: "Full Stack Developer",
-    company: "WebDev Solutions",
-  },
-  {
-    name: "Ananya Gupta",
-    role: "ML Engineer",
-    company: "DataScience Labs",
-  },
-  {
-    name: "Michael Brown",
-    role: "Cloud Architect",
-    company: "CloudFirst",
-  },
-  {
-    name: "Neha Verma",
-    role: "UX Designer",
-    company: "DesignStudio",
-  },
-  {
-    name: "David Lee",
-    role: "Blockchain Developer",
-    company: "CryptoTech",
-  },
-  {
-    name: "Kavitha Rao",
-    role: "Data Scientist",
-    company: "Analytics Pro",
-  },
-];
+
 
 const PersonCard = ({
   person,
@@ -98,22 +67,7 @@ export const JudgesMentors = () => {
           </div>
         </div>
 
-        {/* Mentors Section */}
-        <div>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-gradient">Our</span> Mentors
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-              Experienced professionals ready to guide you throughout the hackathon
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {mentors.map((mentor, index) => (
-              <PersonCard key={index} person={mentor} />
-            ))}
-          </div>
-        </div>
+
       </div>
     </section>
   );

@@ -22,7 +22,8 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
     const [teamName, setTeamName] = useState("");
     const [projectIdea, setProjectIdea] = useState("");
     const [projectTrack, setProjectTrack] = useState("");
-    const [registrationType, setRegistrationType] = useState<'team' | 'individual'>('team');
+    // Defaulting to team registration
+    const registrationType = 'team';
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [members, setMembers] = useState<TeamMember[]>([
@@ -155,42 +156,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                 {/* Form */}
                                 <form onSubmit={handleSubmit} className="p-6 space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
 
-                                    {/* Registration Type Toggle */}
-                                    <div className="flex justify-center mb-2">
-                                        <div className="flex p-1 bg-muted/30 border border-primary/20 rounded-xl">
-                                            <button
-                                                type="button"
-                                                onClick={() => setRegistrationType('team')}
-                                                className={cn(
-                                                    "px-6 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
-                                                    registrationType === 'team'
-                                                        ? "bg-primary text-primary-foreground shadow-md"
-                                                        : "text-muted-foreground hover:text-foreground"
-                                                )}
-                                            >
-                                                <Users size={16} />
-                                                Team
-                                            </button>
-                                            <button
-                                                type="button"
-                                                onClick={() => {
-                                                    setRegistrationType('individual');
-                                                    if (members.length > 1) {
-                                                        setMembers([members[0]]);
-                                                    }
-                                                }}
-                                                className={cn(
-                                                    "px-6 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2",
-                                                    registrationType === 'individual'
-                                                        ? "bg-primary text-primary-foreground shadow-md"
-                                                        : "text-muted-foreground hover:text-foreground"
-                                                )}
-                                            >
-                                                <User size={16} />
-                                                Individual
-                                            </button>
-                                        </div>
-                                    </div>
+
 
 
                                     {/* Project/Team Info */}
@@ -198,24 +164,22 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                         <div className="flex items-center gap-2 text-primary mb-4">
                                             <Briefcase size={20} />
                                             <h3 className="font-semibold uppercase tracking-wider text-sm">
-                                                {registrationType === 'team' ? 'Team Details' : 'Project Details'}
+                                                Team Details
                                             </h3>
                                         </div>
 
                                         <div className="grid md:grid-cols-2 gap-6">
-                                            {registrationType === 'team' && (
-                                                <div className="space-y-2">
-                                                    <label className="text-sm font-medium text-foreground">Team Name</label>
-                                                    <input
-                                                        required
-                                                        type="text"
-                                                        value={teamName}
-                                                        onChange={(e) => setTeamName(e.target.value)}
-                                                        className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
-                                                        placeholder="e.g. Binary Bandits"
-                                                    />
-                                                </div>
-                                            )}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-foreground">Team Name</label>
+                                                <input
+                                                    required
+                                                    type="text"
+                                                    value={teamName}
+                                                    onChange={(e) => setTeamName(e.target.value)}
+                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
+                                                    placeholder="e.g. Binary Bandits"
+                                                />
+                                            </div>
                                             <div className="space-y-2">
                                                 <label className="text-sm font-medium text-foreground">Project Track</label>
                                                 <select
@@ -254,14 +218,12 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                             <div className="flex items-center gap-2">
                                                 <Users size={20} />
                                                 <h3 className="font-semibold uppercase tracking-wider text-sm">
-                                                    {registrationType === 'team' ? 'Team Members' : 'Participant Details'}
+                                                    Team Members
                                                 </h3>
                                             </div>
-                                            {registrationType === 'team' && (
-                                                <span className="text-xs text-muted-foreground bg-muted/20 px-3 py-1 rounded-full border border-border">
-                                                    {members.length} / 4 Members
-                                                </span>
-                                            )}
+                                            <span className="text-xs text-muted-foreground bg-muted/20 px-3 py-1 rounded-full border border-border">
+                                                {members.length} / 4 Members
+                                            </span>
                                         </div>
 
                                         <div className="space-y-4">
@@ -273,10 +235,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                         className="relative p-5 bg-card/50 border border-border rounded-xl hover:border-primary/30 transition-colors group"
                                                     >
                                                         <div className="absolute top-4 right-4 text-xs font-mono text-primary/70">
-                                                            {registrationType === 'individual'
-                                                                ? 'INDIVIDUAL PARTICIPANT'
-                                                                : (index === 0 ? "TEAM LEADER" : `MEMBER ${index + 1}`)
-                                                            }
+                                                            {index === 0 ? "TEAM LEADER" : `MEMBER ${index + 1}`}
                                                         </div>
 
                                                         <div className="grid md:grid-cols-2 gap-4 mt-2">
@@ -342,7 +301,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                             ))}
                                         </div>
 
-                                        {registrationType === 'team' && members.length < 4 && (
+                                        {members.length < 4 && (
                                             <button
                                                 type="button"
                                                 onClick={addMember}

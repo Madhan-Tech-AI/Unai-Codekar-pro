@@ -54,7 +54,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
         </div>
 
         {/* CTA buttons */}
-        <div className="relative z-[100] flex flex-col sm:flex-row justify-center gap-4 lg:gap-8 animate-fade-in-up animation-delay-600 w-full px-4 sm:px-0 pointer-events-auto">
+        <div className="relative z-[100] flex md:hidden flex-col sm:flex-row justify-center gap-4 lg:gap-8 animate-fade-in-up animation-delay-600 w-full px-4 sm:px-0 pointer-events-auto">
           <Button
             size="lg"
             onClick={handleApply}
@@ -67,7 +67,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
           <Button
             size="lg"
             variant="outline"
-            className="w-full sm:w-auto border-primary/50 text-primary hover:bg-primary/10 text-lg lg:text-xl 2xl:text-2xl px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6 2xl:px-12 2xl:py-8 cursor-pointer pointer-events-auto relative z-50"
+            className="w-full sm:w-auto border-primary/50 text-primary bg-background/80 backdrop-blur-md hover:bg-primary/20 text-lg lg:text-xl 2xl:text-2xl px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6 2xl:px-12 2xl:py-8 cursor-pointer pointer-events-auto relative z-50 transition-colors duration-300"
           >
             Join Community
           </Button>

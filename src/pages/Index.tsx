@@ -6,7 +6,7 @@ import { Prizes } from "@/components/hackathon/Prizes";
 import { SponsorChallenges } from "@/components/hackathon/SponsorChallenges";
 import { JudgesMentors } from "@/components/hackathon/JudgesMentors";
 import { Sponsors } from "@/components/hackathon/Sponsors";
-import { Gallery } from "@/components/hackathon/Gallery";
+
 import { Team } from "@/components/hackathon/Team";
 import { FAQ } from "@/components/hackathon/FAQ";
 import { Footer } from "@/components/hackathon/Footer";
@@ -41,8 +41,8 @@ const Index = () => {
             color="#a27aff"
             wispDensity={1}
             flowSpeed={0.35}
-            verticalSizing={isMobile ? 8 : (isTablet ? 5 : 2)}
-            horizontalSizing={isMobile ? 1.2 : (isTablet ? 0.8 : 0.5)}
+            verticalSizing={isMobile ? 4 : (isTablet ? 5 : 2)}
+            horizontalSizing={isMobile ? 0.8 : (isTablet ? 0.8 : 0.5)}
             fogIntensity={isMobile ? 0.3 : (isTablet ? 0.25 : 0.2)}
             fogScale={isMobile ? 0.5 : (isTablet ? 0.4 : 0.3)}
             wispSpeed={15}
@@ -50,7 +50,7 @@ const Index = () => {
             flowStrength={0.25}
             decay={1.1}
             horizontalBeamOffset={0}
-            verticalBeamOffset={isMobile ? -0.2 : (isTablet ? -0.3 : -0.5)}
+            verticalBeamOffset={isMobile ? -0.4 : (isTablet ? -0.3 : -0.5)}
           />
         </div>
       </div>
@@ -73,7 +73,7 @@ const Index = () => {
         <SponsorChallenges />
         <JudgesMentors />
         <Sponsors />
-        <Gallery />
+
         <Team />
         <FAQ />
         <Footer />
