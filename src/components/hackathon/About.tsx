@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Users, Building2, MapPin, Trophy, Eye, Target } from "lucide-react";
-import MagicBento, { BentoItem } from "@/components/ui/MagicBento";
+import MagicBento, { BentoItem, ParticleCard } from "@/components/ui/MagicBento";
+import { motion } from "framer-motion";
 
 const stats = [
   { icon: Users, value: 5000, suffix: "+", label: "Total Registrations" },
@@ -83,26 +84,51 @@ export const About = () => {
 
         {/* Mission & Vision */}
         <div className="mb-16">
-          <MagicBento
-            items={[
-              {
-                title: "Our Vision",
-                description:
-                  "To create India's largest student-run hackathon ecosystem that empowers the next generation of innovators, entrepreneurs, and problem-solvers. We believe in the power of collaboration, creativity, and technology to solve real-world challenges.",
-                label: "Vision",
-                header: <Eye className="w-8 h-8 text-primary mb-2" />,
-              },
-              {
-                title: "Our Mission",
-                description:
-                  "To provide a platform where students from diverse backgrounds can showcase their skills, learn from industry experts, network with like-minded individuals, and transform innovative ideas into impactful solutions that benefit society.",
-                label: "Mission",
-                header: <Target className="w-8 h-8 text-primary mb-2" />,
-              },
-            ]}
-            gridClassName="grid-cols-1 md:grid-cols-2 gap-8"
-            spotlightRadius={200}
-          />
+          <div className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+            >
+              <ParticleCard
+                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-[#060010] border border-white/10 rounded-3xl overflow-hidden"
+              >
+                <div className="magic-bento-card__header mb-6">
+                  <div className="magic-bento-card__label text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Vision</div>
+                  <Eye className="w-8 h-8 text-primary mb-2" />
+                </div>
+                <div className="magic-bento-card__content mt-auto">
+                  <h2 className="magic-bento-card__title text-2xl font-bold text-white mb-2">Our Vision</h2>
+                  <p className="magic-bento-card__description text-muted-foreground leading-relaxed">
+                    To create India's largest student-run hackathon ecosystem that empowers the next generation of innovators, entrepreneurs, and problem-solvers. We believe in the power of collaboration, creativity, and technology to solve real-world challenges.
+                  </p>
+                </div>
+              </ParticleCard>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+            >
+              <ParticleCard
+                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-[#060010] border border-white/10 rounded-3xl overflow-hidden"
+              >
+                <div className="magic-bento-card__header mb-6">
+                  <div className="magic-bento-card__label text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Mission</div>
+                  <Target className="w-8 h-8 text-primary mb-2" />
+                </div>
+                <div className="magic-bento-card__content mt-auto">
+                  <h2 className="magic-bento-card__title text-2xl font-bold text-white mb-2">Our Mission</h2>
+                  <p className="magic-bento-card__description text-muted-foreground leading-relaxed">
+                    To provide a platform where students from diverse backgrounds can showcase their skills, learn from industry experts, network with like-minded individuals, and transform innovative ideas into impactful solutions that benefit society.
+                  </p>
+                </div>
+              </ParticleCard>
+            </motion.div>
+          </div>
         </div>
 
         {/* Stats */}

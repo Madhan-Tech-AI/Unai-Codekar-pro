@@ -177,7 +177,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                     value={teamName}
                                                     onChange={(e) => setTeamName(e.target.value)}
                                                     className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
-                                                    placeholder="e.g. Binary Bandits"
+                                                    placeholder="Enter your team name..."
                                                 />
                                             </div>
                                             <div className="space-y-2">
@@ -188,12 +188,12 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                     onChange={(e) => setProjectTrack(e.target.value)}
                                                     className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
                                                 >
-                                                    <option value="" disabled>Select a track</option>
-                                                    <option value="web3">Web3 & Blockchain</option>
-                                                    <option value="ai">AI & Machine Learning</option>
-                                                    <option value="fintech">FinTech</option>
-                                                    <option value="health">HealthTech</option>
-                                                    <option value="open">Open Innovation</option>
+                                                    <option value="" disabled className="bg-zinc-900 text-white">Select a track</option>
+                                                    <option value="web3" className="bg-zinc-900 text-white">Web3 & Blockchain</option>
+                                                    <option value="ai" className="bg-zinc-900 text-white">AI & Machine Learning</option>
+                                                    <option value="fintech" className="bg-zinc-900 text-white">FinTech</option>
+                                                    <option value="health" className="bg-zinc-900 text-white">HealthTech</option>
+                                                    <option value="open" className="bg-zinc-900 text-white">Open Innovation</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                                         value={member.name}
                                                                         onChange={(e) => updateMember(member.id, "name", e.target.value)}
                                                                         className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
-                                                                        placeholder="John Doe"
+                                                                        placeholder="Enter your name..."
                                                                     />
                                                                 </div>
                                                             </div>
@@ -264,7 +264,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                                         value={member.email}
                                                                         onChange={(e) => updateMember(member.id, "email", e.target.value)}
                                                                         className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
-                                                                        placeholder="john@example.com"
+                                                                        placeholder="Enter your email..."
                                                                     />
                                                                 </div>
                                                             </div>
@@ -280,7 +280,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                                             value={member.github || ""}
                                                                             onChange={(e) => updateMember(member.id, "github", e.target.value)}
                                                                             className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
-                                                                            placeholder="https://github.com/... or Drive Link"
+                                                                            placeholder="https://github.com"
                                                                         />
                                                                     </div>
                                                                 </div>
