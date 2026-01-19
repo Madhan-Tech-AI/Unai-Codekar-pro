@@ -105,7 +105,7 @@ export const Footer = () => {
             © 2026 CodeKar. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
-            UNAI Crafted
+            UNAI Crafted by <a href="https://www.linkedin.com/in/anjali-patel-3439b2278" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline transition-all">Anjali</a>
           </p>
         </div>
       </div>
