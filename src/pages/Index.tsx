@@ -12,7 +12,7 @@ import { FAQ } from "@/components/hackathon/FAQ";
 import { Footer } from "@/components/hackathon/Footer";
 import { RegistrationForm } from "@/components/hackathon/RegistrationForm";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // @ts-ignore
 import LaserFlow from "@/components/LaserFlow";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -21,7 +21,17 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const checkTablet = () => {
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+    checkTablet();
+    window.addEventListener('resize', checkTablet);
+    return () => window.removeEventListener('resize', checkTablet);
+  }, []);
 
   return (
     <main className="min-h-screen bg-background relative">
@@ -31,16 +41,16 @@ const Index = () => {
             color="#a27aff"
             wispDensity={1}
             flowSpeed={0.35}
-            verticalSizing={isMobile ? 8 : 2}
-            horizontalSizing={isMobile ? 1.2 : 0.5}
-            fogIntensity={isMobile ? 0.3 : 0.2}
-            fogScale={isMobile ? 0.5 : 0.3}
+            verticalSizing={isMobile ? 8 : (isTablet ? 5 : 2)}
+            horizontalSizing={isMobile ? 1.2 : (isTablet ? 0.8 : 0.5)}
+            fogIntensity={isMobile ? 0.3 : (isTablet ? 0.25 : 0.2)}
+            fogScale={isMobile ? 0.5 : (isTablet ? 0.4 : 0.3)}
             wispSpeed={15}
             wispIntensity={isMobile ? 4 : 3}
             flowStrength={0.25}
             decay={1.1}
             horizontalBeamOffset={0}
-            verticalBeamOffset={isMobile ? -0.2 : -0.5}
+            verticalBeamOffset={isMobile ? -0.2 : (isTablet ? -0.3 : -0.5)}
           />
         </div>
       </div>

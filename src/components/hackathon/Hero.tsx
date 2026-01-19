@@ -10,10 +10,15 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
     if (onIntroComplete) onIntroComplete();
   }, [onIntroComplete]);
 
+  const handleApply = () => {
+    console.log("Hero: Apply Now clicked");
+    if (onApplyClick) onApplyClick();
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in pointer-events-none">
       {/* Grid overlay */}
-      <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in">
+      <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in pointer-events-auto">
 
         {/* Main title */}
         <GradientText
@@ -49,20 +54,20 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
         </div>
 
         {/* CTA buttons */}
-        <div className="relative z-[50] flex flex-wrap justify-center gap-4 3xl:gap-8 animate-fade-in-up animation-delay-600">
+        <div className="relative z-[100] flex flex-col sm:flex-row justify-center gap-4 lg:gap-8 animate-fade-in-up animation-delay-600 w-full px-4 sm:px-0 pointer-events-auto">
           <Button
             size="lg"
-            onClick={onApplyClick}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 shadow-lg shadow-primary/20 cursor-pointer pointer-events-auto relative z-50 transition-transform duration-300 hover:scale-105 active:scale-95"
+            onClick={handleApply}
+            className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 text-lg lg:text-xl 2xl:text-2xl px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6 2xl:px-12 2xl:py-8 shadow-lg shadow-primary/20 cursor-pointer pointer-events-auto relative z-50 transition-transform duration-300 hover:scale-105 active:scale-95"
             style={{ zIndex: 9999 }}
           >
             Apply Now
-            <ArrowRight className="ml-2 w-5 h-5 3xl:w-8 3xl:h-8" />
+            <ArrowRight className="ml-2 w-5 h-5 2xl:w-8 2xl:h-8" />
           </Button>
           <Button
             size="lg"
             variant="outline"
-            className="border-primary/50 text-primary hover:bg-primary/10 text-lg 3xl:text-2xl px-8 py-6 3xl:px-12 3xl:py-8 cursor-pointer pointer-events-auto relative z-50"
+            className="w-full sm:w-auto border-primary/50 text-primary hover:bg-primary/10 text-lg lg:text-xl 2xl:text-2xl px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6 2xl:px-12 2xl:py-8 cursor-pointer pointer-events-auto relative z-50"
           >
             Join Community
           </Button>
