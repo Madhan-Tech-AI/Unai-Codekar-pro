@@ -15,12 +15,24 @@ import { RegistrationForm } from "@/components/hackathon/RegistrationForm";
 import { useState, useEffect } from "react";
 // @ts-ignore
 import LaserFlow from "@/components/LaserFlow";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const checkTablet = () => {
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+    checkTablet();
+    window.addEventListener('resize', checkTablet);
+    return () => window.removeEventListener('resize', checkTablet);
+  }, []);
 
 
   return (
@@ -31,16 +43,16 @@ const Index = () => {
             color="#c37aff"
             wispDensity={1}
             flowSpeed={0.5}
-            verticalSizing={2}
-            horizontalSizing={0.5}
-            fogIntensity={0.45}
-            fogScale={0.3}
+            verticalSizing={isMobile ? 4 : (isTablet ? 5 : 2)}
+            horizontalSizing={isMobile ? 0.8 : (isTablet ? 0.8 : 0.5)}
+            fogIntensity={isMobile ? 0.3 : (isTablet ? 0.25 : 0.45)}
+            fogScale={isMobile ? 0.5 : (isTablet ? 0.4 : 0.3)}
             wispSpeed={15}
-            wispIntensity={5}
+            wispIntensity={isMobile ? 4 : 5}
             flowStrength={0.25}
             decay={1.1}
             horizontalBeamOffset={0}
-            verticalBeamOffset={-0.5}
+            verticalBeamOffset={isMobile ? -0.4 : (isTablet ? -0.3 : -0.5)}
           />
         </div>
       </div>
