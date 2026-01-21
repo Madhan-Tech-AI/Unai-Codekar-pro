@@ -12,50 +12,28 @@ import { FAQ } from "@/components/hackathon/FAQ";
 import { Footer } from "@/components/hackathon/Footer";
 import { RegistrationForm } from "@/components/hackathon/RegistrationForm";
 
-import { useState, useEffect } from "react";
-// @ts-ignore
-import LaserFlow from "@/components/LaserFlow";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useState } from "react";
 
 
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
-  const isMobile = useIsMobile();
-  const [isTablet, setIsTablet] = useState(false);
-
-  useEffect(() => {
-    const checkTablet = () => {
-      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
-    };
-    checkTablet();
-    window.addEventListener('resize', checkTablet);
-    return () => window.removeEventListener('resize', checkTablet);
-  }, []);
-
 
   return (
     <main className="min-h-screen bg-background relative">
-      <div className="fixed inset-0 z-0 text-white bg-black pointer-events-none">
-        <div style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }} className="pointer-events-none">
-          <LaserFlow
-            color="#c37aff"
-            wispDensity={1}
-            flowSpeed={0.5}
-            verticalSizing={isMobile ? 4 : (isTablet ? 5 : 2)}
-            horizontalSizing={isMobile ? 0.8 : (isTablet ? 0.8 : 0.5)}
-            fogIntensity={isMobile ? 0.3 : (isTablet ? 0.25 : 0.45)}
-            fogScale={isMobile ? 0.5 : (isTablet ? 0.4 : 0.3)}
-            wispSpeed={15}
-            wispIntensity={isMobile ? 4 : 5}
-            flowStrength={0.25}
-            decay={1.1}
-            horizontalBeamOffset={0}
-            verticalBeamOffset={isMobile ? -0.4 : (isTablet ? -0.3 : -0.5)}
-          />
-        </div>
+      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          className="w-full h-full object-cover opacity-40"
+        >
+          <source src="/CodekarBackground.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/60" />
       </div>
+
 
       <div className="relative z-10">
 
