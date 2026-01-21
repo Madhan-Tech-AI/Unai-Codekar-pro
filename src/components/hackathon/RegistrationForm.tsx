@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { GOOGLE_SCRIPT_URL } from "@/lib/google-sheet-config";
+import emailjs from "@emailjs/browser";
+import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "@/lib/emailjs-config";
 
 interface TeamMember {
     id: string;
@@ -54,7 +56,6 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
         setIsSubmitting(true);
 
         const formData = {
@@ -66,8 +67,6 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             submittedAt: new Date().toISOString(),
         };
 
-        // Check if the script URL is configured
-        // Check if the script URL is configured
         if (!GOOGLE_SCRIPT_URL) {
             alert("Error: Google Script URL is not configured. Please check src/lib/google-sheet-config.ts");
             setIsSubmitting(false);
@@ -75,20 +74,46 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
         }
 
         try {
-            await fetch(GOOGLE_SCRIPT_URL, {
+            const templateParams = {
+                to_name: members[0].name,
+                to_email: members[0].email,
+                team_name: teamName || "Individual",
+                message: "Application received",
+            };
+
+            console.log("📨 Attempting to send email with params:", templateParams);
+
+            const emailPromise = emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams,
+                EMAILJS_PUBLIC_KEY.trim()
+            ).catch(err => {
+                // Throwing here to ensure Promise.all fails and we catch it below
+                throw err;
+            });
+
+            const sheetPromise = fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
 
+            await Promise.all([emailPromise, sheetPromise]);
+
             console.log("Registration Data Submitted:", formData);
-            // alert("✅ SUCCESS: Registration saved to Google Sheet!");
             setIsSuccess(true);
-            // onClose(); // Don't close immediately, show success message
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error submitting form", error);
-            alert("❌ Error: Could not save to Google Sheet. Check console.");
+
+            if (error?.status === 422) {
+                alert("❌ Email Error (422): Unable to send email. \nPossible causes:\n1. The 'to_email' field in your EmailJS template might not match the variable name in code.\n2. The email address provided is invalid.\n\nPlease check your EmailJS Template and ensure it uses {{to_name}}, {{to_email}}, {{team_name}}, and {{message}}.");
+            } else if (error?.text?.includes("Public Key")) {
+                alert("❌ Email Error: Invalid EmailJS Public Key. Please check 'src/lib/emailjs-config.ts' and update EMAILJS_PUBLIC_KEY from your dashboard.");
+            } else {
+                alert("❌ Registration Failed: " + (error?.text || error.message || "Unknown error occurred"));
+            }
         } finally {
             setIsSubmitting(false);
         }
