@@ -92,7 +92,7 @@ export const About = () => {
               transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
             >
               <ParticleCard
-                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-[#060010] border border-white/10 rounded-3xl overflow-hidden"
+                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
               >
                 <div className="magic-bento-card__header mb-6">
                   <div className="magic-bento-card__label text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Vision</div>
@@ -114,7 +114,7 @@ export const About = () => {
               transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
             >
               <ParticleCard
-                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-[#060010] border border-white/10 rounded-3xl overflow-hidden"
+                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
               >
                 <div className="magic-bento-card__header mb-6">
                   <div className="magic-bento-card__label text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Mission</div>

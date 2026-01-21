@@ -21,7 +21,7 @@
 
 .magic-bento-card {
     position: relative;
-    background-color: #060010;
+    background-color: transparent;
     /* fallback */
     border-radius: 1rem;
     overflow: hidden;

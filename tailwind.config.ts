@@ -24,6 +24,12 @@ export default {
         '3xl': '1920px',
         '4xl': '2560px',
       },
+      fontFamily: {
+        "hk-modular": ['"HK Modular"', "Orbitron", "sans-serif"],
+        "kanit": ["Kanit", "sans-serif"],
+        "chakra": ['"Chakra Petch"', "sans-serif"],
+        sans: ['"Chakra Petch"', "ui-sans-serif", "system-ui", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
-import BlurText from "@/components/ui/BlurText";
 // @ts-ignore
 import GradientText from "@/components/GradientText";
+import TextType from "@/components/ui/TextType";
 import { useEffect } from "react";
 
 export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () => void; onApplyClick?: () => void }) => {
@@ -25,16 +25,22 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
           colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
           animationSpeed={10}
           showBorder={false}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold font-chakra"
         >
           CODEKAR
         </GradientText>
 
 
         {/* Tagline */}
-        <p className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
-          Innovation, Creativity, and Building the Future
-        </p>
+        <div className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
+          <TextType
+            text={["Innovation, Creativity, and Building the Future", "Join 50+ Hackers at CodeKar 2026", "Build solutions that make a difference"]}
+            typingSpeed={75}
+            deletingSpeed={50}
+            pauseDuration={1500}
+            cursorCharacter="_"
+          />
+        </div>
 
         {/* Event details */}
         <div className="flex flex-wrap justify-center gap-6 3xl:gap-12 mb-10 3xl:mb-16 animate-fade-in-up animation-delay-600">

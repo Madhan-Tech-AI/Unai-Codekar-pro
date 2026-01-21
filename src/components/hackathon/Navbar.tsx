@@ -25,7 +25,8 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 py-5 3xl:py-10 transition-all duration-300 bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-md py-4 shadow-md" : "bg-transparent py-5 3xl:py-10"
+        }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
         <a href="#" className="text-2xl 3xl:text-4xl font-bold text-gradient">

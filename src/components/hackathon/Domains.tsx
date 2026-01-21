@@ -13,6 +13,7 @@ import fintechImg from "@/assets/tracks/fintech.png";
 import sustainabilityImg from "@/assets/tracks/sustainability.png";
 import openInnovationImg from "@/assets/tracks/open-innovation.png";
 import aiImg from "@/assets/tracks/ai.png";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 
 const domains = [
   {
@@ -76,29 +77,32 @@ export const Domains = () => {
         {/* Domains grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {domains.map((domain, index) => (
-            <div
+            <SpotlightCard
               key={index}
-              className="glass rounded-2xl p-8 hover:card-glow transition-all duration-300 group cursor-pointer hover:border-primary/50 hover:-translate-y-1"
+              className="rounded-2xl p-8 hover:card-glow transition-all duration-300 group cursor-pointer hover:border-primary/50 hover:-translate-y-1"
+              spotlightColor="rgba(0, 229, 255, 0.2)"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                {
-                  // @ts-ignore
-                  domain.image ? (
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-xl border border-primary/20 flex items-center justify-center mb-6 group-hover:border-primary/50 transition-colors">
+                  {
                     // @ts-ignore
-                    <img src={domain.image} alt={domain.title} className="w-8 h-8 object-contain filter brightness-0 invert group-hover:scale-110 transition-transform" />
-                  ) : (
-                    <domain.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
-                  )
-                }
-              </div>
+                    domain.image ? (
+                      // @ts-ignore
+                      <img src={domain.image} alt={domain.title} className="w-8 h-8 object-contain filter brightness-0 invert group-hover:scale-110 transition-transform" />
+                    ) : (
+                      <domain.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
+                    )
+                  }
+                </div>
 
-              <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                {domain.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {domain.description}
-              </p>
-            </div>
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {domain.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {domain.description}
+                </p>
+              </div>
+            </SpotlightCard>
           ))}
         </div>
       </div>
