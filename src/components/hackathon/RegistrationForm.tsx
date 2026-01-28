@@ -1,5 +1,6 @@
 import { useState, Fragment } from "react";
 import { X, Plus, Trash2, Users, User, Mail, Phone, Briefcase, Github, GraduationCap, CheckCircle } from "lucide-react";
+import QRCode from "react-qr-code";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -24,17 +25,27 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
     const [teamName, setTeamName] = useState("");
     const [projectIdea, setProjectIdea] = useState("");
     const [projectTrack, setProjectTrack] = useState("");
-    // Defaulting to team registration
-    const registrationType = 'team';
+    const [registrationType, setRegistrationType] = useState<'individual' | 'team'>('team');
+    const [transactionId, setTransactionId] = useState("");
+    const [upiId, setUpiId] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [members, setMembers] = useState<TeamMember[]>([
         { id: "1", name: "", email: "", role: "Leader" },
     ]);
 
+    // Update members when registration type changes
+    const handleRegistrationTypeChange = (type: 'individual' | 'team') => {
+        setRegistrationType(type);
+        if (type === 'individual') {
+            // Keep only the first member (Leader)
+            setMembers([members[0]]);
+            setTeamName(""); // Clear team name if individual? Or keep it as "Individual"
+        }
+    };
 
     const addMember = () => {
-        if (members.length < 4) {
+        if (registrationType === 'team' && members.length < 4) {
             setMembers([
                 ...members,
                 { id: Math.random().toString(), name: "", email: "", role: "Member" },
@@ -60,11 +71,14 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
 
         const formData = {
             registrationType,
-            teamName: registrationType === 'team' ? teamName : undefined,
+            teamName: registrationType === 'team' ? teamName : "Individual",
             projectTrack,
             projectIdea,
             members,
             submittedAt: new Date().toISOString(),
+            amount: registrationType === 'individual' ? 300 : 1000,
+            transactionId,
+            upiId
         };
 
         if (!GOOGLE_SCRIPT_URL) {
@@ -77,8 +91,8 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             const templateParams = {
                 to_name: members[0].name,
                 to_email: members[0].email,
-                team_name: teamName || "Individual",
-                message: "Application received",
+                team_name: registrationType === 'team' ? teamName : "Individual",
+                message: `Application received for ${registrationType} registration. Amount Paid: ₹${formData.amount}. TxID: ${transactionId}`,
             };
 
             console.log("📨 Attempting to send email with params:", templateParams);
@@ -118,6 +132,9 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             setIsSubmitting(false);
         }
     };
+
+    const registrationFee = registrationType === 'individual' ? 300 : 1000;
+    const upiUrl = `upi://pay?pa=8428293603@slc&pn=Nehemiah%20Nesanathan&am=${registrationFee}&cu=INR`;
 
     return (
         <AnimatePresence>
@@ -181,30 +198,57 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                 {/* Form */}
                                 <form onSubmit={handleSubmit} className="p-6 space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
 
-
-
+                                    {/* Registration Type Toggle */}
+                                    <div className="flex p-1 bg-muted/20 rounded-lg border border-border/50">
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRegistrationTypeChange('individual')}
+                                            className={cn(
+                                                "flex-1 py-2 text-sm font-medium rounded-md transition-all",
+                                                registrationType === 'individual'
+                                                    ? "bg-primary text-primary-foreground shadow-sm"
+                                                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                                            )}
+                                        >
+                                            Individual
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRegistrationTypeChange('team')}
+                                            className={cn(
+                                                "flex-1 py-2 text-sm font-medium rounded-md transition-all",
+                                                registrationType === 'team'
+                                                    ? "bg-primary text-primary-foreground shadow-sm"
+                                                    : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
+                                            )}
+                                        >
+                                            Team
+                                        </button>
+                                    </div>
 
                                     {/* Project/Team Info */}
                                     <section className="space-y-4">
                                         <div className="flex items-center gap-2 text-primary mb-4">
                                             <Briefcase size={20} />
                                             <h3 className="font-semibold uppercase tracking-wider text-sm">
-                                                Team Details
+                                                {registrationType === 'team' ? "Team Details" : "Project Details"}
                                             </h3>
                                         </div>
 
                                         <div className="grid md:grid-cols-2 gap-6">
-                                            <div className="space-y-2">
-                                                <label className="text-sm font-medium text-foreground">Team Name</label>
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    value={teamName}
-                                                    onChange={(e) => setTeamName(e.target.value)}
-                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
-                                                    placeholder="Enter your team name..."
-                                                />
-                                            </div>
+                                            {registrationType === 'team' && (
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-medium text-foreground">Team Name</label>
+                                                    <input
+                                                        required
+                                                        type="text"
+                                                        value={teamName}
+                                                        onChange={(e) => setTeamName(e.target.value)}
+                                                        className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
+                                                        placeholder="Enter your team name..."
+                                                    />
+                                                </div>
+                                            )}
                                             <div className="space-y-2">
                                                 <label className="text-sm font-medium text-foreground">Project Track</label>
                                                 <select
@@ -243,12 +287,14 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                             <div className="flex items-center gap-2">
                                                 <Users size={20} />
                                                 <h3 className="font-semibold uppercase tracking-wider text-sm">
-                                                    Team Members
+                                                    {registrationType === 'team' ? "Team Members" : "Participant Details"}
                                                 </h3>
                                             </div>
-                                            <span className="text-xs text-muted-foreground bg-muted/20 px-3 py-1 rounded-full border border-border">
-                                                {members.length} / 4 Members
-                                            </span>
+                                            {registrationType === 'team' && (
+                                                <span className="text-xs text-muted-foreground bg-muted/20 px-3 py-1 rounded-full border border-border">
+                                                    {members.length} / 4 Members
+                                                </span>
+                                            )}
                                         </div>
 
                                         <div className="space-y-4">
@@ -259,9 +305,11 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                         animate={{ opacity: 1, x: 0 }}
                                                         className="relative p-5 bg-card/50 border border-border rounded-xl hover:border-primary/30 transition-colors group"
                                                     >
-                                                        <div className="absolute top-4 right-4 text-xs font-mono text-primary/70">
-                                                            {index === 0 ? "TEAM LEADER" : `MEMBER ${index + 1}`}
-                                                        </div>
+                                                        {registrationType === 'team' && (
+                                                            <div className="absolute top-4 right-4 text-xs font-mono text-primary/70">
+                                                                {index === 0 ? "TEAM LEADER" : `MEMBER ${index + 1}`}
+                                                            </div>
+                                                        )}
 
                                                         <div className="grid md:grid-cols-2 gap-4 mt-2">
                                                             <div className="space-y-1">
@@ -294,26 +342,11 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                                 </div>
                                                             </div>
 
-                                                            {index === 0 && (
-                                                                <div className="space-y-1 md:col-span-2">
-                                                                    <label className="text-xs text-muted-foreground">GitHub / Project Drive Link</label>
-                                                                    <div className="relative">
-                                                                        <Github className="absolute left-3 top-3 text-muted-foreground" size={16} />
-                                                                        <input
-                                                                            required
-                                                                            type="url"
-                                                                            value={member.github || ""}
-                                                                            onChange={(e) => updateMember(member.id, "github", e.target.value)}
-                                                                            className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
-                                                                            placeholder="https://github.com"
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                            )}
+
                                                         </div>
                                                     </motion.div>
                                                     {/* The remove button should be outside the motion.div but still within the Fragment for positioning */}
-                                                    {index !== 0 && (
+                                                    {registrationType === 'team' && index !== 0 && (
                                                         <button
                                                             type="button"
                                                             onClick={() => removeMember(member.id)}
@@ -326,7 +359,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                             ))}
                                         </div>
 
-                                        {members.length < 4 && (
+                                        {registrationType === 'team' && members.length < 4 && (
                                             <button
                                                 type="button"
                                                 onClick={addMember}
@@ -338,6 +371,60 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                         )}
                                     </section>
 
+                                    <div className="h-px bg-border" />
+
+                                    {/* Payment Section - NEW */}
+                                    <section className="space-y-4">
+                                        <div className="flex items-center gap-2 text-primary mb-4">
+                                            <h3 className="font-semibold uppercase tracking-wider text-sm">
+                                                Payment
+                                            </h3>
+                                        </div>
+
+                                        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 flex flex-col items-center space-y-4 text-center">
+                                            <p className="font-medium text-lg">
+                                                Registration Fee: <span className="text-primary font-bold">₹{registrationFee}</span>
+                                            </p>
+                                            <div className="bg-white p-4 rounded-lg shadow-lg">
+                                                <QRCode
+                                                    value={upiUrl}
+                                                    size={200}
+                                                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                                    viewBox={`0 0 256 256`}
+                                                />
+                                            </div>
+                                            <p className="text-xs text-muted-foreground max-w-sm">
+                                                Scan the QR code to pay via UPI. The amount (₹{registrationFee}) will be automatically filled.
+                                            </p>
+                                        </div>
+
+                                        <div className="grid md:grid-cols-2 gap-6">
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-foreground">Transaction ID</label>
+                                                <input
+                                                    required
+                                                    type="text"
+                                                    value={transactionId}
+                                                    onChange={(e) => setTransactionId(e.target.value)}
+                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
+                                                    placeholder="Enter Transaction ID"
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-foreground">Your UPI ID</label>
+                                                <input
+                                                    required
+                                                    type="text"
+                                                    value={upiId}
+                                                    onChange={(e) => setUpiId(e.target.value)}
+                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
+                                                    placeholder="example@upi"
+                                                />
+                                            </div>
+                                        </div>
+                                    </section>
+
+
                                     {/* Submit */}
                                     <div className="pt-4 border-t border-border">
                                         <Button
@@ -345,7 +432,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                             disabled={isSubmitting}
                                             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-lg shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
-                                            {isSubmitting ? "Registering..." : "Confirm Registration"}
+                                            {isSubmitting ? "Registering..." : `Pay ₹${registrationFee} & Register`}
                                         </Button>
                                         <p className="text-center text-muted-foreground text-xs mt-3">
                                             By registering, you agree to our Code of Conduct and Terms.
