@@ -99,7 +99,7 @@ export const Sponsors = () => {
             Want to sponsor our hackathon?
           </p>
           <a
-            href="mailto:sponsors@codekar.com"
+            href="mailto:sponsors@unai.com"
             className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
           >
             Contact us for sponsorship opportunities

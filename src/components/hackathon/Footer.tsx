@@ -23,8 +23,8 @@ export const Footer = () => {
           <div className="grid md:grid-cols-4 gap-4 mb-4">
             {/* Brand */}
             <div className="md:col-span-2">
-              <a href="#" className="text-xl font-bold text-gradient mb-2 block">
-                CodeKar
+              <a href="#" className="flex items-center mb-2">
+                <img src="/unai-logo.png" alt="UNAI" className="h-6 w-auto" />
               </a>
               <p className="text-muted-foreground mb-4 max-w-md text-xs">
                 Join India's premier student hackathon and build solutions that
@@ -100,7 +100,7 @@ export const Footer = () => {
           {/* Bottom bar */}
           <div className="pt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-2">
             <p className="text-[10px] text-muted-foreground">
-              © 2026 CodeKar. All rights reserved.
+              © 2026 UNAI. All rights reserved.
             </p>
             <p className="text-[10px] text-muted-foreground">
               UNAI Crafted

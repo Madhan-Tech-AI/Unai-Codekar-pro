@@ -86,10 +86,10 @@ export const FAQ = () => {
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-2">Still have questions?</p>
           <a
-            href="mailto:contact@codekar.com"
+            href="mailto:contact@unai.com"
             className="text-primary hover:underline font-medium"
           >
-            Reach out to us at contact@codekar.com
+            Reach out to us at contact@unai.com
           </a>
         </div>
       </div>

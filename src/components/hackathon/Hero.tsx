@@ -34,7 +34,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
         {/* Tagline */}
         <div className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
           <TextType
-            text={["Innovation, Creativity, and Building the Future", "Join 50+ Hackers at CodeKar 2026", "Build solutions that make a difference"]}
+            text={["Innovation, Creativity, and Building the Future", "Join 50+ Hackers at UNAI 2026", "Build solutions that make a difference"]}
             typingSpeed={75}
             deletingSpeed={50}
             pauseDuration={1500}

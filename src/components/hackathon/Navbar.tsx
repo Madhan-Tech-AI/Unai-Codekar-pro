@@ -29,8 +29,8 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
         }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
-        <a href="#" className="text-2xl 3xl:text-4xl font-bold text-gradient">
-          CodeKar
+        <a href="#" className="flex items-center">
+          <img src="/unai-logo.png" alt="UNAI" className="h-8 3xl:h-12 w-auto" />
         </a>
 
         {/* Desktop Navigation */}

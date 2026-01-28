@@ -147,7 +147,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                 <div className="space-y-2">
                                     <h2 className="text-3xl font-bold text-foreground">Registration Successful!</h2>
                                     <p className="text-muted-foreground max-w-md mx-auto">
-                                        You have successfully registered for CodeKar. check your email for confirmation and further details.
+                                        You have successfully registered for Codekar. check your email for confirmation and further details.
                                     </p>
                                 </div>
 
@@ -164,7 +164,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                 <div className="flex items-center justify-between p-6 border-b border-primary/10 bg-card/50">
                                     <div>
                                         <h2 className="text-2xl font-bold text-foreground">
-                                            Register for <span className="text-primary">CodeKar</span>
+                                            Register for <span className="text-primary">Codekar</span>
                                         </h2>
                                         <p className="text-muted-foreground text-sm mt-1">
                                             Join the innovation hackathon

@@ -29,7 +29,7 @@ const Index = () => {
           muted
           className="w-full h-full object-cover opacity-40"
         >
-          <source src="/CodekarBackground.mp4" type="video/mp4" />
+          <source src="/UnaiBackground.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-background/60" />
       </div>
