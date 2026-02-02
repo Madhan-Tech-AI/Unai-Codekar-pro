@@ -14,6 +14,7 @@ export interface BentoItem {
     color?: string;
     onClick?: () => void;
     header?: React.ReactNode;
+    className?: string;
 }
 
 const createParticleElement = (x: number, y: number, color: string = DEFAULT_GLOW_COLOR) => {
@@ -507,7 +508,7 @@ const MagicBento = ({
 
             <BentoCardGrid gridRef={gridRef} className={gridClassName}>
                 {items.map((card, index) => {
-                    const baseClassName = `magic-bento-card ${textAutoHide ? 'magic-bento-card--text-autohide' : ''} ${enableBorderGlow ? 'magic-bento-card--border-glow' : ''}`;
+                    const baseClassName = `magic-bento-card ${textAutoHide ? 'magic-bento-card--text-autohide' : ''} ${enableBorderGlow ? 'magic-bento-card--border-glow' : ''} ${card.className || ''}`;
                     const cardStyle = {
                         backgroundColor: card.color || '#060010',
                         '--glow-color': glowColor

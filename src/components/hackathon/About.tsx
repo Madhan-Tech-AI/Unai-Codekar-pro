@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { Users, Building2, MapPin, Trophy, Eye, Target } from "lucide-react";
-import MagicBento, { BentoItem, ParticleCard } from "@/components/ui/MagicBento";
+import { MapPin, Trophy } from "lucide-react";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import { motion } from "framer-motion";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const stats = [
-  { icon: Users, value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
-  { icon: Building2, value: 200, suffix: "+", label: "Colleges Participated", color: "transparent" },
+  { icon: null, lottie: "https://lottie.host/54a53bec-d6c0-402f-8474-5049124b3e57/lR3OqzeVjc.lottie", value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
+  { icon: null, lottie: "https://lottie.host/929d7d37-9260-4c0f-a831-0ad42b25c134/u3uknWnoYo.lottie", value: 200, suffix: "+", label: "Colleges Participated", color: "transparent", lottieClass: "[filter:invert(8%)_sepia(16%)_saturate(3062%)_hue-rotate(203deg)_brightness(93%)_contrast(97%)]" },
   { icon: MapPin, value: 50, suffix: "+", label: "Cities Covered", color: "transparent" },
   { icon: Trophy, value: 10, suffix: "L+", label: "Prize Pool", color: "transparent" },
 ];
@@ -92,20 +93,27 @@ export const About = () => {
               viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
             >
-              <ParticleCard
-                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
+              <div
+                className="relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
               >
-                <div className="magic-bento-card__header mb-6">
-                  <div className="magic-bento-card__label text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Vision</div>
-                  <Eye className="w-8 h-8 text-primary mb-2" />
+                <div className="mb-6">
+                  <div className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Vision</div>
+                  <div className="w-12 h-12 mb-2">
+                    <DotLottieReact
+                      src="https://lottie.host/a47e918e-29ac-4600-827f-7dde5730c172/kUO9nK7fc3.lottie"
+                      loop
+                      autoplay
+                      className="w-full h-full"
+                    />
+                  </div>
                 </div>
-                <div className="magic-bento-card__content mt-auto">
-                  <h2 className="magic-bento-card__title text-2xl font-bold text-white mb-2">Our Vision</h2>
-                  <p className="magic-bento-card__description text-muted-foreground leading-relaxed">
+                <div className="mt-auto">
+                  <h2 className="text-2xl font-bold text-white mb-2">Our Vision</h2>
+                  <p className="text-muted-foreground leading-relaxed">
                     To create meaningful opportunities for students by offering hands-on practical experience, real-world project exposure, and internship opportunities with reputed corporate institutions—preparing them for industry-ready careers.
                   </p>
                 </div>
-              </ParticleCard>
+              </div>
             </motion.div>
 
             <motion.div
@@ -114,20 +122,27 @@ export const About = () => {
               viewport={{ once: false, margin: "-100px" }}
               transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
             >
-              <ParticleCard
-                className="magic-bento-card relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
+              <div
+                className="relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
               >
-                <div className="magic-bento-card__header mb-6">
-                  <div className="magic-bento-card__label text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Mission</div>
-                  <Target className="w-8 h-8 text-primary mb-2" />
+                <div className="mb-6">
+                  <div className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Mission</div>
+                  <div className="w-12 h-12 mb-2">
+                    <DotLottieReact
+                      src="https://lottie.host/236d65bd-2e0b-4e53-8062-6d0534057809/3RPglDmJjv.lottie"
+                      loop
+                      autoplay
+                      className="w-full h-full"
+                    />
+                  </div>
                 </div>
-                <div className="magic-bento-card__content mt-auto">
-                  <h2 className="magic-bento-card__title text-2xl font-bold text-white mb-2">Our Mission</h2>
-                  <p className="magic-bento-card__description text-muted-foreground leading-relaxed">
+                <div className="mt-auto">
+                  <h2 className="text-2xl font-bold text-white mb-2">Our Mission</h2>
+                  <p className="text-muted-foreground leading-relaxed">
                     To build a future-ready student ecosystem that encourages innovation, skill development, and real-world impact through technology and industry collaboration.
                   </p>
                 </div>
-              </ParticleCard>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -135,22 +150,38 @@ export const About = () => {
         {/* Stats */}
         {/* Stats */}
         <div>
-          <MagicBento
-            items={stats.map((stat) => ({
-              title: (
-                <div className="text-3xl md:text-4xl font-bold text-white">
-                  <CounterAnimation target={stat.value} suffix={stat.suffix} />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat, index) => (
+              <SpotlightCard
+                key={index}
+                className="relative p-8 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center group"
+                spotlightColor="rgba(0, 229, 255, 0.1)"
+              >
+                <div className="relative z-10">
+                  {/* @ts-ignore */}
+                  {stat.lottie ? (
+                    <div className="w-16 h-16 mx-auto mb-2">
+                      <DotLottieReact
+                        // @ts-ignore
+                        src={stat.lottie}
+                        loop
+                        autoplay
+                        className={`w-full h-full ${stat.lottieClass || ''}`}
+                      />
+                    </div>
+                  ) : (
+                    <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                  )}
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                    <CounterAnimation target={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
+                    {stat.label}
+                  </p>
                 </div>
-              ),
-              description: stat.label,
-              label: "Stats",
-              header: (
-                <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              ),
-            }))}
-            gridClassName="grid-cols-2 md:grid-cols-4 gap-6"
-            spotlightRadius={150}
-          />
+              </SpotlightCard>
+            ))}
+          </div>
         </div>
 
       </div>

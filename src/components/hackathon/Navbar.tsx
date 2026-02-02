@@ -38,7 +38,7 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
           <NavBar items={navLinks} />
           <Button
             onClick={onApplyClick}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 3xl:text-lg 3xl:px-8 3xl:py-6"
+            className="bg-gradient-to-r from-[#ce2bf1] to-[#601ef9] text-white hover:opacity-90 transition-opacity 3xl:text-lg 3xl:px-8 3xl:py-6"
           >
             Apply Now
           </Button>
@@ -72,7 +72,7 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
                 setIsMobileMenuOpen(false);
                 onApplyClick?.();
               }}
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              className="w-full bg-gradient-to-r from-[#ce2bf1] to-[#601ef9] text-white hover:opacity-90 transition-opacity"
             >
               Apply Now
             </Button>
