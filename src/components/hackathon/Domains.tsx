@@ -13,6 +13,7 @@ import fintechImg from "@/assets/tracks/fintech.png";
 import sustainabilityImg from "@/assets/tracks/sustainability.png";
 import openInnovationImg from "@/assets/tracks/open-innovation.png";
 import aiImg from "@/assets/tracks/ai.png";
+
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
 const domains = [
@@ -25,37 +26,37 @@ const domains = [
   },
   {
     icon: Globe,
-    title: "Web & App Development",
+    title: "Entertainment",
     description:
-      "Create innovative web and mobile applications that enhance user experiences and solve real problems.",
+      "Design smart entertainment solutions using AI, deep learning, and machine learning to transform gaming, media, music, and digital experiences.",
     image: webAppImg,
   },
   {
     icon: Wallet,
-    title: "FinTech",
+    title: "AI agents and automation",
     description:
-      "Revolutionize financial services with blockchain, digital payments, and innovative banking solutions.",
+      "Develop innovative solutions using Artificial Intelligence and Machine Learning to transform ideas into intelligent systems.",
     image: fintechImg,
   },
   {
     icon: Heart,
-    title: "Healthcare",
+    title: "Big Data and Mass Communication",
     description:
-      "Develop solutions that improve healthcare accessibility, diagnostics, and patient care systems.",
+      "Design innovative platforms powered by Big Data to improve information dissemination, media analytics, and large-scale communication systems.",
     image: healthcareImg,
   },
   {
     icon: Leaf,
-    title: "Sustainability",
+    title: "Core AI & ML",
     description:
-      "Address environmental challenges with technology solutions for climate change and sustainability.",
+      "Develop innovative solutions using Artificial Intelligence and Machine Learning to transform ideas into intelligent systems.",
     image: sustainabilityImg,
   },
   {
     icon: Lightbulb,
-    title: "Open Innovation",
+    title: "cutting Agents & Automation",
     description:
-      "Bring any groundbreaking idea to life. No limits, no boundaries—just pure innovation.",
+      "Develop cutting-edge agents and automation technologies that transform how tasks are executed and systems interact.",
     image: openInnovationImg,
   },
 ];
