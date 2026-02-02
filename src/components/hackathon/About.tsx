@@ -152,6 +152,7 @@ export const About = () => {
             spotlightRadius={150}
           />
         </div>
+
       </div>
     </section>
   );

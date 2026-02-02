@@ -18,7 +18,7 @@ import SpotlightCard from "@/components/ui/SpotlightCard";
 const domains = [
   {
     icon: Brain,
-    title: "AI & Machine Learning",
+    title: "Education",
     description:
       "Build intelligent solutions using cutting-edge AI, deep learning, and machine learning technologies.",
     image: aiImg,
@@ -79,7 +79,7 @@ export const Domains = () => {
           {domains.map((domain, index) => (
             <SpotlightCard
               key={index}
-              className="rounded-2xl p-8 hover:card-glow transition-all duration-300 group cursor-pointer hover:border-primary/50 hover:-translate-y-1"
+              className="rounded-2xl p-8 backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/50 shadow-lg hover:shadow-primary/20 transition-all duration-300 group cursor-pointer hover:-translate-y-1"
               spotlightColor="rgba(0, 229, 255, 0.2)"
             >
               <div className="relative z-10">
