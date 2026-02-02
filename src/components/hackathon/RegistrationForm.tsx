@@ -12,6 +12,9 @@ interface TeamMember {
     id: string;
     name: string;
     email: string;
+    collegeName: string;
+    department: string;
+    year: string;
     role: string;
     github?: string;
 }
@@ -25,13 +28,14 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
     const [teamName, setTeamName] = useState("");
     const [projectIdea, setProjectIdea] = useState("");
     const [projectTrack, setProjectTrack] = useState("");
-    const [registrationType, setRegistrationType] = useState<'individual' | 'team'>('team');
+    const [projectTitle, setProjectTitle] = useState("");
+    const [registrationType, setRegistrationType] = useState<'individual' | 'team'>('individual');
     const [transactionId, setTransactionId] = useState("");
     const [upiId, setUpiId] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [members, setMembers] = useState<TeamMember[]>([
-        { id: "1", name: "", email: "", role: "Leader" },
+        { id: "1", name: "", email: "", collegeName: "", department: "", year: "", role: "Leader" },
     ]);
 
     // Update members when registration type changes
@@ -48,7 +52,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
         if (registrationType === 'team' && members.length < 4) {
             setMembers([
                 ...members,
-                { id: Math.random().toString(), name: "", email: "", role: "Member" },
+                { id: Math.random().toString(), name: "", email: "", collegeName: "", department: "", year: "", role: "Member" },
             ]);
         }
     };
@@ -73,6 +77,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             registrationType,
             teamName: registrationType === 'team' ? teamName : "Individual",
             projectTrack,
+            projectTitle,
             projectIdea,
             members,
             submittedAt: new Date().toISOString(),
@@ -277,12 +282,24 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                     className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
                                                 >
                                                     <option value="" disabled className="bg-zinc-900 text-white">Select a track</option>
-                                                    <option value="web3" className="bg-zinc-900 text-white">Web3 & Blockchain</option>
-                                                    <option value="ai" className="bg-zinc-900 text-white">AI & Machine Learning</option>
-                                                    <option value="fintech" className="bg-zinc-900 text-white">FinTech</option>
-                                                    <option value="health" className="bg-zinc-900 text-white">HealthTech</option>
-                                                    <option value="open" className="bg-zinc-900 text-white">Open Innovation</option>
+                                                    <option value="Education" className="bg-zinc-900 text-white">Education</option>
+                                                    <option value="Entertainment" className="bg-zinc-900 text-white">Entertainment</option>
+                                                    <option value="AI agents and automation" className="bg-zinc-900 text-white">AI agents and automation</option>
+                                                    <option value="Big Data and Mass Communication" className="bg-zinc-900 text-white">Big Data and Mass Communication</option>
+                                                    <option value="Core AI & ML" className="bg-zinc-900 text-white">Core AI & ML</option>
+                                                    <option value="Cutting Agents & Automation" className="bg-zinc-900 text-white">Cutting Agents & Automation</option>
                                                 </select>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-foreground">Project Title</label>
+                                                <input
+                                                    required
+                                                    type="text"
+                                                    value={projectTitle}
+                                                    onChange={(e) => setProjectTitle(e.target.value)}
+                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
+                                                    placeholder="Enter your project title..."
+                                                />
                                             </div>
                                         </div>
 
@@ -360,8 +377,53 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                                                     />
                                                                 </div>
                                                             </div>
+                                                        </div>
 
+                                                        <div className="grid md:grid-cols-3 gap-4 mt-3">
+                                                            <div className="space-y-1">
+                                                                <label className="text-xs text-muted-foreground">College Name</label>
+                                                                <div className="relative">
+                                                                    <GraduationCap className="absolute left-3 top-3 text-muted-foreground" size={16} />
+                                                                    <input
+                                                                        required
+                                                                        type="text"
+                                                                        value={member.collegeName}
+                                                                        onChange={(e) => updateMember(member.id, "collegeName", e.target.value)}
+                                                                        className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
+                                                                        placeholder="Your college..."
+                                                                    />
+                                                                </div>
+                                                            </div>
 
+                                                            <div className="space-y-1">
+                                                                <label className="text-xs text-muted-foreground">Department</label>
+                                                                <div className="relative">
+                                                                    <Briefcase className="absolute left-3 top-3 text-muted-foreground" size={16} />
+                                                                    <input
+                                                                        required
+                                                                        type="text"
+                                                                        value={member.department}
+                                                                        onChange={(e) => updateMember(member.id, "department", e.target.value)}
+                                                                        className="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
+                                                                        placeholder="Your department..."
+                                                                    />
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="space-y-1">
+                                                                <label className="text-xs text-muted-foreground">Year</label>
+                                                                <select
+                                                                    required
+                                                                    value={member.year}
+                                                                    onChange={(e) => updateMember(member.id, "year", e.target.value)}
+                                                                    className="w-full bg-background border border-border rounded-lg px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-all"
+                                                                >
+                                                                    <option value="" disabled className="bg-zinc-900">Select</option>
+                                                                    <option value="1st Year" className="bg-zinc-900">1st Year</option>
+                                                                    <option value="2nd Year" className="bg-zinc-900">2nd Year</option>
+                                                                    <option value="3rd Year" className="bg-zinc-900">3rd Year</option>
+                                                                    <option value="4th Year" className="bg-zinc-900">4th Year</option>                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </motion.div>
                                                     {/* The remove button should be outside the motion.div but still within the Fragment for positioning */}
