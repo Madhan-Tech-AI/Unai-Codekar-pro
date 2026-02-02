@@ -54,7 +54,7 @@ const domains = [
   },
   {
     icon: Lightbulb,
-    title: "cutting Agents & Automation",
+    title: "Cutting Agents & Automation",
     description:
       "Develop cutting-edge agents and automation technologies that transform how tasks are executed and systems interact.",
     image: openInnovationImg,
