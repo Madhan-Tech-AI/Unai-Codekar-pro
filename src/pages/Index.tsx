@@ -4,7 +4,7 @@ import { About } from "@/components/hackathon/About";
 import { Domains } from "@/components/hackathon/Domains";
 import { Prizes } from "@/components/hackathon/Prizes";
 import { SponsorChallenges } from "@/components/hackathon/SponsorChallenges";
-import { JudgesMentors } from "@/components/hackathon/JudgesMentors";
+
 import { Sponsors } from "@/components/hackathon/Sponsors";
 
 import { Team } from "@/components/hackathon/Team";
@@ -52,7 +52,7 @@ const Index = () => {
         <Domains />
         <Prizes />
         <SponsorChallenges />
-        <JudgesMentors />
+
         <Sponsors />
 
         <Team />

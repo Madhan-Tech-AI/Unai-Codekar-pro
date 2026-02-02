@@ -4,10 +4,10 @@ import MagicBento, { BentoItem, ParticleCard } from "@/components/ui/MagicBento"
 import { motion } from "framer-motion";
 
 const stats = [
-  { icon: Users, value: 5000, suffix: "+", label: "Total Registrations" },
-  { icon: Building2, value: 200, suffix: "+", label: "Colleges Participated" },
-  { icon: MapPin, value: 50, suffix: "+", label: "Cities Covered" },
-  { icon: Trophy, value: 10, suffix: "L+", label: "Prize Pool" },
+  { icon: Users, value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
+  { icon: Building2, value: 200, suffix: "+", label: "Colleges Participated", color: "transparent" },
+  { icon: MapPin, value: 50, suffix: "+", label: "Cities Covered", color: "transparent" },
+  { icon: Trophy, value: 10, suffix: "L+", label: "Prize Pool", color: "transparent" },
 ];
 
 const CounterAnimation = ({
@@ -77,8 +77,9 @@ export const About = () => {
             <span className="text-gradient">About Us</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Join the ultimate innovation challenge where brilliant minds come
-            together to build, learn, and create solutions for tomorrow.
+            CodeKar is a student-focused hackathon platform organized by UNAI TECH, dedicated to fostering innovation through hands-on learning.
+
+            UNAI TECH independently conducts hackathons and workshops while collaborating with esteemed corporate companies and educational institutions to provide students with industry exposure, mentorship, and growth opportunities. Our initiatives are designed to bridge the gap between academic learning and real-world technology applications.
           </p>
         </div>
 
@@ -101,7 +102,7 @@ export const About = () => {
                 <div className="magic-bento-card__content mt-auto">
                   <h2 className="magic-bento-card__title text-2xl font-bold text-white mb-2">Our Vision</h2>
                   <p className="magic-bento-card__description text-muted-foreground leading-relaxed">
-                    To create India's largest student-run hackathon ecosystem that empowers the next generation of innovators, entrepreneurs, and problem-solvers. We believe in the power of collaboration, creativity, and technology to solve real-world challenges.
+                    To create meaningful opportunities for students by offering hands-on practical experience, real-world project exposure, and internship opportunities with reputed corporate institutions—preparing them for industry-ready careers.
                   </p>
                 </div>
               </ParticleCard>
@@ -123,7 +124,7 @@ export const About = () => {
                 <div className="magic-bento-card__content mt-auto">
                   <h2 className="magic-bento-card__title text-2xl font-bold text-white mb-2">Our Mission</h2>
                   <p className="magic-bento-card__description text-muted-foreground leading-relaxed">
-                    To provide a platform where students from diverse backgrounds can showcase their skills, learn from industry experts, network with like-minded individuals, and transform innovative ideas into impactful solutions that benefit society.
+                    To build a future-ready student ecosystem that encourages innovation, skill development, and real-world impact through technology and industry collaboration.
                   </p>
                 </div>
               </ParticleCard>
