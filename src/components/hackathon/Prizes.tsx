@@ -1,25 +1,30 @@
 import { Trophy, Medal, Award, Users, GraduationCap } from "lucide-react";
 import PixelCard from "@/components/ui/PixelCard";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const mainPrizes = [
   {
-    icon: Trophy,
+    icon: null,
+    lottie: "https://lottie.host/7911d3c9-bb99-48c4-8e77-2a018c342b5e/eGzZ5mmZgq.lottie",
     position: "Winner",
-    color: "from-yellow-500 to-amber-600",
+    color: null,
     borderColor: "border-yellow-500/50",
     variant: "yellow" as const,
   },
   {
-    icon: Medal,
+    icon: null,
+    lottie: "https://lottie.host/a30edad9-e63e-49c3-9329-23928fd4a986/rIrewqZR9O.lottie",
     position: "1st Runner-Up",
-    color: "from-slate-300 to-slate-500",
+    color: null,
     borderColor: "border-slate-400/50",
     variant: "blue" as const,
   },
   {
-    icon: Award,
+    icon: null,
+    lottie: "https://lottie.host/a30edad9-e63e-49c3-9329-23928fd4a986/rIrewqZR9O.lottie",
     position: "2nd Runner-Up",
-    color: "from-amber-700 to-amber-900",
+    color: null,
+    lottieClass: "[filter:invert(56%)_sepia(55%)_saturate(644%)_hue-rotate(345deg)_brightness(96%)_contrast(95%)]",
     borderColor: "border-amber-700/50",
     variant: "pink" as const,
   },
@@ -49,9 +54,23 @@ export const Prizes = () => {
               >
                 <div className="flex flex-col items-center justify-center h-full w-full p-8 text-center" style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
                   <div
-                    className={`w-20 h-20 rounded-full bg-gradient-to-br ${prize.color} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
+                    className={`${prize.color ? `w-20 h-20 rounded-full bg-gradient-to-br ${prize.color}` : 'w-48 h-48'} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
                   >
-                    <prize.icon className="w-10 h-10 text-white" />
+                    {/* @ts-ignore */}
+                    {prize.lottie ? (
+                      <div className="w-full h-full">
+                        <DotLottieReact
+                          // @ts-ignore
+                          src={prize.lottie}
+                          loop
+                          autoplay
+                          // @ts-ignore
+                          className={`w-full h-full ${(prize as any).lottieClass || ''}`}
+                        />
+                      </div>
+                    ) : (
+                      <prize.icon className="w-10 h-10 text-white" />
+                    )}
                   </div>
                   <h3 className="text-2xl font-bold text-foreground mb-2">
                     {prize.position}

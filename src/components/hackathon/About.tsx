@@ -1,14 +1,13 @@
 import { useEffect, useState, useRef } from "react";
-import { MapPin, Trophy } from "lucide-react";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import { motion } from "framer-motion";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const stats = [
   { icon: null, lottie: "https://lottie.host/54a53bec-d6c0-402f-8474-5049124b3e57/lR3OqzeVjc.lottie", value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
-  { icon: null, lottie: "https://lottie.host/929d7d37-9260-4c0f-a831-0ad42b25c134/u3uknWnoYo.lottie", value: 200, suffix: "+", label: "Colleges Participated", color: "transparent", lottieClass: "[filter:invert(8%)_sepia(16%)_saturate(3062%)_hue-rotate(203deg)_brightness(93%)_contrast(97%)]" },
-  { icon: MapPin, value: 50, suffix: "+", label: "Cities Covered", color: "transparent" },
-  { icon: Trophy, value: 10, suffix: "L+", label: "Prize Pool", color: "transparent" },
+  { icon: null, lottie: "https://lottie.host/929d7d37-9260-4c0f-a831-0ad42b25c134/u3uknWnoYo.lottie", value: 200, suffix: "+", label: "Colleges Participated", color: "transparent", lottieClass: "[filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]" },
+  { icon: null, lottie: "https://lottie.host/432d41cd-278d-44b0-ac0d-7edf08362bd8/6BmhPi3b6J.lottie", value: 50, suffix: "+", label: "Cities Covered", color: "transparent", lottieClass: "[filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]" },
+  { icon: null, lottie: "https://lottie.host/1d969f47-16df-4949-85fb-e756f0a08fb4/QaOoBmaaGx.lottie", value: 10, suffix: "L+", label: "Prize Pool", color: "transparent", lottieClass: "[filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]" },
 ];
 
 const CounterAnimation = ({
