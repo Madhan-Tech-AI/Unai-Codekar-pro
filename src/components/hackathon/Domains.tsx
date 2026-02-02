@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from "react";
 import {
   Brain,
   Globe,
@@ -6,6 +7,7 @@ import {
   Leaf,
   Lightbulb,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 
 
@@ -64,13 +66,80 @@ const domains = [
 ];
 
 export const Domains = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (headingRef.current) {
+      observer.observe(headingRef.current);
+    }
+
+    return () => {
+      if (headingRef.current) {
+        observer.unobserve(headingRef.current);
+      }
+    };
+  }, []);
+
+  const text1 = "Hackathon";
+  const text2 = "Tracks";
+
+  const letterVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.05,
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 20,
+      },
+    }),
+  };
+
   return (
     <section id="tracks" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div ref={headingRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Hackathon</span> Tracks
+            <span className="text-gradient inline-block">
+              {text1.split("").map((char, i) => (
+                <motion.span
+                  key={`hackathon-${i}`}
+                  custom={i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block"
+                  style={{ display: "inline-block" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </span>
+            {" "}
+            {text2.split("").map((char, i) => (
+              <motion.span
+                key={`tracks-${i}`}
+                custom={text1.length + i}
+                initial="hidden"
+                animate={isVisible ? "visible" : "hidden"}
+                variants={letterVariants}
+                className="inline-block"
+                style={{ display: "inline-block" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Choose your domain of interest and build solutions that make a difference

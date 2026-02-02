@@ -1,6 +1,8 @@
+import { useEffect, useState, useRef } from "react";
 import { Trophy, Medal, Award, Users, GraduationCap } from "lucide-react";
 import PixelCard from "@/components/ui/PixelCard";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { motion } from "framer-motion";
 
 const mainPrizes = [
   {
@@ -24,20 +26,87 @@ const mainPrizes = [
     lottie: "https://lottie.host/a30edad9-e63e-49c3-9329-23928fd4a986/rIrewqZR9O.lottie",
     position: "2nd Runner-Up",
     color: null,
-    lottieClass: "[filter:invert(56%)_sepia(55%)_saturate(644%)_hue-rotate(345deg)_brightness(96%)_contrast(95%)]",
-    borderColor: "border-amber-700/50",
+    lottieClass: "[filter:invert(68%)_sepia(38%)_saturate(992%)_hue-rotate(338deg)_brightness(94%)_contrast(90%)]",
+    borderColor: "border-[#8C4A1E]",
     variant: "pink" as const,
   },
 ];
 
 export const Prizes = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (headingRef.current) {
+      observer.observe(headingRef.current);
+    }
+
+    return () => {
+      if (headingRef.current) {
+        observer.unobserve(headingRef.current);
+      }
+    };
+  }, []);
+
+  const text1 = "Prizes";
+  const text2 = "& Rewards";
+
+  const letterVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.05,
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 20,
+      },
+    }),
+  };
+
   return (
     <section id="prizes" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div ref={headingRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Prizes</span> &amp; Rewards
+            <span className="text-gradient inline-block">
+              {text1.split("").map((char, i) => (
+                <motion.span
+                  key={`prizes-${i}`}
+                  custom={i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block"
+                  style={{ display: "inline-block" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </span>
+            {" "}
+            {text2.split("").map((char, i) => (
+              <motion.span
+                key={`rewards-${i}`}
+                custom={text1.length + i}
+                initial="hidden"
+                animate={isVisible ? "visible" : "hidden"}
+                variants={letterVariants}
+                className="inline-block"
+                style={{ display: "inline-block" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Compete for exciting prizes and recognition from industry leaders
