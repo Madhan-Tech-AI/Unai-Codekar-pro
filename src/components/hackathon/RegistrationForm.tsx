@@ -76,7 +76,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             projectIdea,
             members,
             submittedAt: new Date().toISOString(),
-            amount: registrationType === 'individual' ? 300 : 1000,
+            amount: registrationType === 'individual' ? 1 : 1000,
             transactionId,
             upiId
         };
@@ -88,6 +88,37 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
         }
 
         try {
+            // First, submit to Google Sheets and check for duplicate transaction
+            const sheetResponse = await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+                redirect: 'follow'
+            });
+
+            const sheetResult = await sheetResponse.json();
+
+            // Check for duplicate transaction error
+            if (sheetResult.error === "DUPLICATE_TRANSACTION") {
+                alert("⚠️ DUPLICATE TRANSACTION DETECTED\n\n" +
+                    "This transaction ID has already been used for registration.\n\n" +
+                    "This means either:\n" +
+                    "• You have already registered with this payment\n" +
+                    "• Someone else used the same payment screenshot\n\n" +
+                    "If you believe this is an error, please contact support.");
+
+                // Reset payment details so user can try again
+                setTransactionId("");
+                setUpiId("");
+                setIsSubmitting(false);
+                return;
+            }
+
+            if (sheetResult.result !== "success") {
+                throw new Error(sheetResult.message || "Failed to submit to Google Sheet");
+            }
+
+            // If sheet submission successful, send confirmation email
             const templateParams = {
                 to_name: members[0].name,
                 to_email: members[0].email,
@@ -97,24 +128,12 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
 
             console.log("📨 Attempting to send email with params:", templateParams);
 
-            const emailPromise = emailjs.send(
+            await emailjs.send(
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
                 templateParams,
                 EMAILJS_PUBLIC_KEY.trim()
-            ).catch(err => {
-                // Throwing here to ensure Promise.all fails and we catch it below
-                throw err;
-            });
-
-            const sheetPromise = fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
-
-            await Promise.all([emailPromise, sheetPromise]);
+            );
 
             console.log("Registration Data Submitted:", formData);
             setIsSuccess(true);
@@ -133,7 +152,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
         }
     };
 
-    const registrationFee = registrationType === 'individual' ? 300 : 1000;
+    const registrationFee = registrationType === 'individual' ? 1 : 1000;
     const upiUrl = `upi://pay?pa=8428293603@slc&pn=Nehemiah%20Nesanathan&am=${registrationFee}&cu=INR`;
 
     return (
@@ -398,28 +417,44 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                             </p>
                                         </div>
 
-                                        <div className="grid md:grid-cols-2 gap-6">
-                                            <div className="space-y-2">
-                                                <label className="text-sm font-medium text-foreground">Transaction ID</label>
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    value={transactionId}
-                                                    onChange={(e) => setTransactionId(e.target.value)}
-                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
-                                                    placeholder="Enter Transaction ID"
-                                                />
+                                        {/* Payment Details - Manual Entry */}
+                                        <div className="space-y-4 mt-6">
+                                            <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                                                <p className="text-xs text-yellow-400 font-medium">
+                                                    ⚠️ <strong>PAYMENT VERIFICATION REQUIRED</strong>
+                                                </p>
+                                                <p className="text-xs text-yellow-400 mt-2">
+                                                    After making payment, enter your Transaction ID below. This will be verified and registered in our system.
+                                                </p>
                                             </div>
-                                            <div className="space-y-2">
-                                                <label className="text-sm font-medium text-foreground">Your UPI ID</label>
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    value={upiId}
-                                                    onChange={(e) => setUpiId(e.target.value)}
-                                                    className="w-full bg-muted/10 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors placeholder:text-muted-foreground/50"
-                                                    placeholder="example@upi"
-                                                />
+
+                                            <div className="grid md:grid-cols-2 gap-4">
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-medium text-foreground">
+                                                        Transaction ID <span className="text-red-500">*</span>
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        value={transactionId}
+                                                        onChange={(e) => setTransactionId(e.target.value)}
+                                                        placeholder="Enter 12-digit Transaction ID"
+                                                        required
+                                                        className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                                                    />
+                                                    <p className="text-xs text-muted-foreground">
+                                                        Find this in your payment confirmation (UTR/Ref No)
+                                                    </p>
+                                                </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-sm font-medium text-foreground">UPI ID (Optional)</label>
+                                                    <input
+                                                        type="text"
+                                                        value={upiId}
+                                                        onChange={(e) => setUpiId(e.target.value)}
+                                                        placeholder="yourname@upi"
+                                                        className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </section>
@@ -429,10 +464,10 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                                     <div className="pt-4 border-t border-border">
                                         <Button
                                             type="submit"
-                                            disabled={isSubmitting}
+                                            disabled={isSubmitting || !transactionId.trim()}
                                             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-lg shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
-                                            {isSubmitting ? "Registering..." : `Pay ₹${registrationFee} & Register`}
+                                            {isSubmitting ? "Registering..." : transactionId.trim() ? "Complete Registration" : "Enter Transaction ID First"}
                                         </Button>
                                         <p className="text-center text-muted-foreground text-xs mt-3">
                                             By registering, you agree to our Code of Conduct and Terms.
@@ -444,6 +479,7 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
                     </motion.div>
                 </motion.div>
             )}
+
         </AnimatePresence>
     );
 };
