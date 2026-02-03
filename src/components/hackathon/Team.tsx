@@ -1,12 +1,32 @@
 import { useEffect, useState, useRef } from "react";
-import { Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  { name: "Mohammad Tanveer", role: "Lead Organizer" },
-  { name: "Kamalesh", role: "Technical Head" },
-  { name: "Akash  Kumar Singh", role: "Marketing Lead" },
-  { name: "Madhan Kumar", role: "Sponsorship Head" },
+  {
+    name: "Mohammad Tanveer",
+    role: "Lead Organizer",
+    linkedin: "https://www.linkedin.com/in/mohammed-tanveer-kareemullah-33b91a2ab/",
+    instagram: "https://www.instagram.com/txnvir_11/?hl=en"
+  },
+  {
+    name: "Kamalesh",
+    role: "Technical Head",
+    linkedin: "https://www.linkedin.com/in/kamalesh-tech-ai?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/kamalesh.jr_"
+  },
+  {
+    name: "Akash  Kumar Singh",
+    role: "Marketing Lead",
+    linkedin: "https://www.linkedin.com/in/akash-kumar-singh-o-7746242b5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+    instagram: "https://www.instagram.com/itsakashszn_"
+  },
+  {
+    name: "Madhan Kumar",
+    role: "Sponsorship Head",
+    linkedin: "https://www.linkedin.com/in/madhan-kumar-p-759402324/",
+    instagram: "https://www.instagram.com/_iam_maddy._"
+  },
 ];
 
 export const Team = () => {
@@ -120,22 +140,20 @@ export const Team = () => {
               <p className="text-sm text-primary mb-4">{member.role}</p>
               <div className="flex justify-center gap-2">
                 <a
-                  href="#"
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a
-                  href="#"
+                  href={member.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
-                  <Twitter className="w-4 h-4" />
-                </a>
-                <a
-                  href="#"
-                  className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
+                  <Instagram className="w-4 h-4" />
                 </a>
               </div>
             </div>
