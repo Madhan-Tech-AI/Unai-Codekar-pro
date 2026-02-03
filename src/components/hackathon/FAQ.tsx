@@ -24,29 +24,29 @@ const faqs = [
       "The hackathon is completely online. All submissions, evaluations, and announcements will be done virtually.",
   },
   {
-    question: "Do I need to have a team beforehand?",
+    question: "Can I participate individually or as a team?",
     answer:
-      "Not necessarily! While you can register with a pre-formed team, we also have team formation activities at the beginning of the event. Solo hackers are welcome to find teammates during the event.",
+      "You can participate either individually or as a team of up to 4 members.",
   },
   {
-    question: "What kind of projects can I build?",
+    question: "How many members are allowed in a team?",
     answer:
-      "You can build anything! Web apps, mobile apps, hardware projects, AI/ML solutions, games, tools — the possibilities are endless. Just make sure your project fits into one of our hackathon tracks.",
+      "Each team must have 3 or 4 members.",
   },
   {
-    question: "Will there be food and accommodation?",
+    question: "Can team members be from different colleges?",
     answer:
-      "Yes! We provide all meals (breakfast, lunch, dinner, and midnight snacks) throughout the hackathon. Sleeping arrangements with sleeping bags are available at the venue for those who want to rest.",
+      "No, team members must be from the same college.",
   },
   {
-    question: "What are the judging criteria?",
+    question: "Will participants receive certificates?",
     answer:
-      "Projects are judged based on: Innovation & Creativity (25%), Technical Complexity (25%), Practical Impact (25%), and Presentation & Demo (25%). Our judges look for unique solutions that solve real problems.",
+      "Yes, participants will receive certificates for their participation.",
   },
   {
-    question: "Can I start working on my project before the hackathon?",
+    question: "Is the registration fee refundable?",
     answer:
-      "No, all code must be written during the hackathon. However, you can come with ideas, designs, and research. Using open-source libraries and APIs is allowed and encouraged!",
+      "No,the registration fee is non-refundable.",
   },
 ];
 
