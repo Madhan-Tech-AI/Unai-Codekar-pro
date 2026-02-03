@@ -7,7 +7,7 @@ const challenges = [
     icon: Zap,
     sponsor: "Tech Corp",
     title: "Best Use of AI/ML",
-    prize: "₹50,000",
+    prize: "₹25,000",
     description:
       "Build an innovative solution leveraging artificial intelligence and machine learning.",
   },
@@ -15,7 +15,7 @@ const challenges = [
     icon: Database,
     sponsor: "DataFlow Inc",
     title: "Best Data Analytics Solution",
-    prize: "₹40,000",
+    prize: "₹25,000",
     description:
       "Create a project that demonstrates exceptional data analysis and visualization.",
   },
@@ -23,7 +23,7 @@ const challenges = [
     icon: Cloud,
     sponsor: "CloudNine",
     title: "Best Cloud-Native App",
-    prize: "₹40,000",
+    prize: "₹25,000",
     description:
       "Develop a scalable, cloud-native application using modern cloud services.",
   },
@@ -31,7 +31,7 @@ const challenges = [
     icon: Shield,
     sponsor: "SecureNet",
     title: "Best Cybersecurity Solution",
-    prize: "₹35,000",
+    prize: "₹25,000",
     description:
       "Build a security-focused solution addressing modern cybersecurity challenges.",
   },
