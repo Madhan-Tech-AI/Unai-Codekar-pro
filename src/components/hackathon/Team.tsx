@@ -3,14 +3,10 @@ import { Linkedin, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const teamMembers = [
-  { name: "Arjun Mehta", role: "Lead Organizer" },
-  { name: "Sneha Reddy", role: "Technical Head" },
-  { name: "Rohan Kapoor", role: "Marketing Lead" },
-  { name: "Priya Iyer", role: "Sponsorship Head" },
-  { name: "Karthik Nair", role: "Design Lead" },
-  { name: "Anisha Sharma", role: "Operations Head" },
-  { name: "Varun Joshi", role: "Content Lead" },
-  { name: "Meera Patel", role: "Community Manager" },
+  { name: "Mohammad Tanveer", role: "Lead Organizer" },
+  { name: "Kamalesh", role: "Technical Head" },
+  { name: "Akash  Kumar Singh", role: "Marketing Lead" },
+  { name: "Madhan Kumar", role: "Sponsorship Head" },
 ];
 
 export const Team = () => {
