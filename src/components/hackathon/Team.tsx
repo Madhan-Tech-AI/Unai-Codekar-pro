@@ -7,25 +7,29 @@ const teamMembers = [
     name: "Mohammad Tanveer",
     role: "Lead Organizer",
     linkedin: "https://www.linkedin.com/in/mohammed-tanveer-kareemullah-33b91a2ab/",
-    instagram: "https://www.instagram.com/txnvir_11/?hl=en"
+    instagram: "https://www.instagram.com/txnvir_11/?hl=en",
+    image: "/Mohammed_Tanveer_K.jpg"
   },
   {
     name: "Kamalesh",
     role: "Technical Head",
     linkedin: "https://www.linkedin.com/in/kamalesh-tech-ai?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/kamalesh.jr_"
+    instagram: "https://www.instagram.com/kamalesh.jr_",
+    image: "/Kamalesh_S.JPG"
   },
   {
     name: "Akash  Kumar Singh",
     role: "Marketing Lead",
     linkedin: "https://www.linkedin.com/in/akash-kumar-singh-o-7746242b5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    instagram: "https://www.instagram.com/itsakashszn_"
+    instagram: "https://www.instagram.com/itsakashszn_",
+    image: "/Akash_Kumar_Singh_O.JPG"
   },
   {
     name: "Madhan Kumar",
     role: "Sponsorship Head",
     linkedin: "https://www.linkedin.com/in/madhan-kumar-p-759402324/",
-    instagram: "https://www.instagram.com/_iam_maddy._"
+    instagram: "https://www.instagram.com/_iam_maddy._",
+    image: "/Madhan_Kumar_P.JPG"
   },
 ];
 
@@ -131,8 +135,16 @@ export const Team = () => {
               key={index}
               className=" rounded-2xl p-6 text-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 hover:-translate-y-1"
             >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform">
-                {member.name.charAt(0)}
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform overflow-hidden">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  member.name.charAt(0)
+                )}
               </div>
               <h4 className="text-lg font-bold text-foreground mb-1">
                 {member.name}
