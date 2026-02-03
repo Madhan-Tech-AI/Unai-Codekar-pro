@@ -109,7 +109,21 @@ export const Prizes = () => {
             ))}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Compete for exciting prizes and recognition from industry leaders
+            {`Compete for exciting prizes and recognition from industry leaders`
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={`word-${i}`}
+                  custom={text1.length + text2.length + i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block mr-[0.25em]"
+                  style={{ display: "inline-block" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
           </p>
         </div>
 

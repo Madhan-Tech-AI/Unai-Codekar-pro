@@ -129,9 +129,21 @@ export const About = () => {
             </span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            CodeKar is a student-focused hackathon platform organized by UNAI TECH, dedicated to fostering innovation through hands-on learning.
-
-            UNAI TECH independently conducts hackathons and workshops while collaborating with esteemed corporate companies and educational institutions to provide students with industry exposure, mentorship, and growth opportunities. Our initiatives are designed to bridge the gap between academic learning and real-world technology applications.
+            {`CodeKar is a student-focused hackathon platform organized by UNAI TECH, dedicated to fostering innovation through hands-on learning. UNAI TECH independently conducts hackathons and workshops while collaborating with esteemed corporate companies and educational institutions to provide students with industry exposure, mentorship, and growth opportunities. Our initiatives are designed to bridge the gap between academic learning and real-world technology applications.`
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={`word-${i}`}
+                  custom={text.length + i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block mr-[0.25em]"
+                  style={{ display: "inline-block" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
           </p>
         </div>
 

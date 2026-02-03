@@ -9,19 +9,19 @@ import { motion } from "framer-motion";
 
 const faqs = [
   {
-    question: "Who can participate in the hackathon?",
+    question: "What is this hackathon about?",
     answer:
-      "The hackathon is open to all college students, high school students (16+), and recent graduates. You can participate individually or in teams of 2-4 members. We encourage diverse teams with different skill sets.",
+      "This is an online hackathon for college students where participants solve real-world problems using technology and innovation within a limited time.",
   },
   {
-    question: "Is there a registration fee?",
+    question: "Who can participate?",
     answer:
-      "No, participation in the hackathon is completely free! We provide free food, swag, and access to all workshops and mentorship sessions for all registered participants.",
+      "Any college student (UG / PG / Diploma) from any stream or institution is eligible to participate.",
   },
   {
-    question: "What should I bring?",
+    question: "Is this hackathon online or offline?",
     answer:
-      "Bring your laptop, charger, student ID, and any hardware you might need for your project. We'll provide the venue, internet, meals, and all the energy drinks you need to stay awake!",
+      "The hackathon is completely online. All submissions, evaluations, and announcements will be done virtually.",
   },
   {
     question: "Do I need to have a team beforehand?",
@@ -127,7 +127,21 @@ export const FAQ = () => {
             ))}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Everything you need to know about the hackathon
+            {`Everything you need to know about the hackathon`
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={`word-${i}`}
+                  custom={text1.length + text2.length + i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block mr-[0.25em]"
+                  style={{ display: "inline-block" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
           </p>
         </div>
 

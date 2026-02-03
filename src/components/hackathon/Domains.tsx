@@ -142,7 +142,21 @@ export const Domains = () => {
             ))}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Choose your domain of interest and build solutions that make a difference
+            {`Choose your domain of interest and build solutions that make a difference`
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={`word-${i}`}
+                  custom={text1.length + text2.length + i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block mr-[0.25em]"
+                  style={{ display: "inline-block" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
           </p>
         </div>
 
