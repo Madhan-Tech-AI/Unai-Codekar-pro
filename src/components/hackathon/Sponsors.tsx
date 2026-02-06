@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
+// Toggle this to show/hide sponsor details
+const SHOW_DETAILS = false;
+
 const sponsorTiers = [
   {
     tier: "Title Sponsor",
@@ -136,59 +139,80 @@ export const Sponsors = () => {
         </div>
 
         {/* Sponsor tiers */}
-        <div className="space-y-12">
-          {sponsorTiers.map((tier, tierIndex) => (
-            <div key={tierIndex} className="text-center">
-              <h3 className="text-xl font-semibold text-primary mb-6">
-                {tier.tier}
-              </h3>
-              <div
-                className={`flex flex-wrap justify-center gap-4 ${tier.size === "large" ? "gap-8" : ""
-                  }`}
-              >
-                {tier.sponsors.map((sponsor, sponsorIndex) => (
+        {SHOW_DETAILS ? (
+          <>
+            <div className="space-y-12">
+              {sponsorTiers.map((tier, tierIndex) => (
+                <div key={tierIndex} className="text-center">
+                  <h3 className="text-xl font-semibold text-primary mb-6">
+                    {tier.tier}
+                  </h3>
                   <div
-                    key={sponsorIndex}
-                    className={`glass rounded-xl flex items-center justify-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 cursor-pointer ${tier.size === "large"
-                      ? "w-48 h-32 md:w-64 md:h-40"
-                      : tier.size === "medium"
-                        ? "w-36 h-24 md:w-48 md:h-32"
-                        : tier.size === "small"
-                          ? "w-28 h-20 md:w-36 md:h-24"
-                          : "w-24 h-16 md:w-28 md:h-20"
+                    className={`flex flex-wrap justify-center gap-4 ${tier.size === "large" ? "gap-8" : ""
                       }`}
                   >
-                    <div
-                      className={`font-bold text-muted-foreground group-hover:text-primary transition-colors ${tier.size === "large"
-                        ? "text-4xl md:text-5xl"
-                        : tier.size === "medium"
-                          ? "text-2xl md:text-3xl"
-                          : tier.size === "small"
-                            ? "text-xl md:text-2xl"
-                            : "text-lg"
-                        }`}
-                    >
-                      {sponsor.logo}
-                    </div>
+                    {tier.sponsors.map((sponsor, sponsorIndex) => (
+                      <div
+                        key={sponsorIndex}
+                        className={`glass rounded-xl flex items-center justify-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 cursor-pointer ${tier.size === "large"
+                          ? "w-48 h-32 md:w-64 md:h-40"
+                          : tier.size === "medium"
+                            ? "w-36 h-24 md:w-48 md:h-32"
+                            : tier.size === "small"
+                              ? "w-28 h-20 md:w-36 md:h-24"
+                              : "w-24 h-16 md:w-28 md:h-20"
+                          }`}
+                      >
+                        <div
+                          className={`font-bold text-muted-foreground group-hover:text-primary transition-colors ${tier.size === "large"
+                            ? "text-4xl md:text-5xl"
+                            : tier.size === "medium"
+                              ? "text-2xl md:text-3xl"
+                              : tier.size === "small"
+                                ? "text-xl md:text-2xl"
+                                : "text-lg"
+                            }`}
+                        >
+                          {sponsor.logo}
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        {/* Become a sponsor CTA */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">
-            Want to sponsor our hackathon?
-          </p>
-          <a
-            href="mailto:sponsors@unai.com"
-            className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+            {/* Become a sponsor CTA */}
+            <div className="text-center mt-16">
+              <p className="text-muted-foreground mb-4">
+                Want to sponsor our hackathon?
+              </p>
+              <a
+                href="mailto:sponsors@unai.com"
+                className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+              >
+                Contact us for sponsorship opportunities
+              </a>
+            </div>
+          </>
+        ) : (
+          <motion.div
+            className="text-center py-12"
+            initial={{ y: 0 }}
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           >
-            Contact us for sponsorship opportunities
-          </a>
-        </div>
+            <p className="text-2xl font-semibold text-primary">Powered by innovation</p>
+            <p className="text-muted-foreground mt-2">The hackathon is backed by partners who value creativity and cutting-edge solutions</p>
+            <p className="text-muted-foreground mt-2">More updates soon!</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -4,6 +4,9 @@ import PixelCard from "@/components/ui/PixelCard";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { motion } from "framer-motion";
 
+// Toggle this to show/hide prize details
+const SHOW_DETAILS = false;
+
 const mainPrizes = [
   {
     icon: null,
@@ -128,44 +131,63 @@ export const Prizes = () => {
         </div>
 
         {/* Main prizes */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {mainPrizes.map((prize, index) => (
-            <div key={index} className="h-[400px]">
-              <PixelCard
-                variant={prize.variant}
-                className={`rounded-2xl border ${prize.borderColor} transition-all duration-300 group hover:-translate-y-2`}
-              >
-                <div className="flex flex-col items-center justify-center h-full w-full p-8 text-center" style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
-                  <div
-                    className={`${prize.color ? `w-20 h-20 rounded-full bg-gradient-to-br ${prize.color}` : 'w-48 h-48'} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
-                  >
-                    {/* @ts-ignore */}
-                    {prize.lottie ? (
-                      <div className="w-full h-full">
-                        <DotLottieReact
-                          // @ts-ignore
-                          src={prize.lottie}
-                          loop
-                          autoplay
-                          // @ts-ignore
-                          className={`w-full h-full ${(prize as any).lottieClass || ''}`}
-                        />
-                      </div>
-                    ) : (
-                      <prize.icon className="w-10 h-10 text-white" />
-                    )}
+        {SHOW_DETAILS ? (
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {mainPrizes.map((prize, index) => (
+              <div key={index} className="h-[400px]">
+                <PixelCard
+                  variant={prize.variant}
+                  className={`rounded-2xl border ${prize.borderColor} transition-all duration-300 group hover:-translate-y-2`}
+                >
+                  <div className="flex flex-col items-center justify-center h-full w-full p-8 text-center" style={{ position: 'absolute', inset: 0, zIndex: 10 }}>
+                    <div
+                      className={`${prize.color ? `w-20 h-20 rounded-full bg-gradient-to-br ${prize.color}` : 'w-48 h-48'} flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}
+                    >
+                      {/* @ts-ignore */}
+                      {prize.lottie ? (
+                        <div className="w-full h-full">
+                          <DotLottieReact
+                            // @ts-ignore
+                            src={prize.lottie}
+                            loop
+                            autoplay
+                            // @ts-ignore
+                            className={`w-full h-full ${(prize as any).lottieClass || ''}`}
+                          />
+                        </div>
+                      ) : (
+                        <prize.icon className="w-10 h-10 text-white" />
+                      )}
+                    </div>
+                    <h3 className="text-2xl font-bold text-foreground mb-2">
+                      {prize.position}
+                    </h3>
+                    <p className="text-sm text-muted-foreground">
+                      Awards and Certificates
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">
-                    {prize.position}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Awards and Certificates
-                  </p>
-                </div>
-              </PixelCard>
-            </div>
-          ))}
-        </div>
+                </PixelCard>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            className="text-center py-12"
+            initial={{ y: 0 }}
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <p className="text-2xl font-semibold text-primary">Win more than just prizes</p>
+            <p className="text-muted-foreground mt-2">Recognition, exposure, and exciting rewards are on the way</p>
+            <p className="text-muted-foreground mt-2">Details dropping soon!</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

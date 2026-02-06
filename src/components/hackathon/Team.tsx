@@ -2,6 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { Linkedin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 
+// Toggle this to show/hide team details
+const SHOW_DETAILS = false;
+
 const teamMembers = [
   {
     name: "Mohammad Tanveer",
@@ -129,48 +132,67 @@ export const Team = () => {
         </div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className=" rounded-2xl p-6 text-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 hover:-translate-y-1"
-            >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform overflow-hidden">
-                {member.image ? (
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  member.name.charAt(0)
-                )}
+        {SHOW_DETAILS ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {teamMembers.map((member, index) => (
+              <div
+                key={index}
+                className=" rounded-2xl p-6 text-center hover:card-glow transition-all duration-300 group border border-border hover:border-primary/50 hover:-translate-y-1"
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/30 to-accent/30 mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-110 transition-transform overflow-hidden">
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    member.name.charAt(0)
+                  )}
+                </div>
+                <h4 className="text-lg font-bold text-foreground mb-1">
+                  {member.name}
+                </h4>
+                <p className="text-sm text-primary mb-4">{member.role}</p>
+                <div className="flex justify-center gap-2">
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                  <a
+                    href={member.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  >
+                    <Instagram className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
-              <h4 className="text-lg font-bold text-foreground mb-1">
-                {member.name}
-              </h4>
-              <p className="text-sm text-primary mb-4">{member.role}</p>
-              <div className="flex justify-center gap-2">
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-                <a
-                  href={member.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                >
-                  <Instagram className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            className="text-center py-12"
+            initial={{ y: 0 }}
+            animate={{
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <p className="text-2xl font-semibold text-primary">By innovators, for innovators</p>
+            <p className="text-muted-foreground mt-2">A dedicated team is working behind the scenes to make this hackathon memorable</p>
+            <p className="text-muted-foreground mt-2">Meet them soon!</p>
+          </motion.div>
+        )}
       </div>
     </section>
   );
