@@ -25,7 +25,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
           colors={["#ce2bf1", "#601ef9", "#ce2bf1", "#601ef9", "#ce2bf1"]}
           animationSpeed={10}
           showBorder={false}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold font-chakra"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold font-chakra animate-float"
         >
           CODEKAR
         </GradientText>
@@ -44,16 +44,16 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
 
         {/* Event details */}
         <div className="flex flex-wrap justify-center gap-6 3xl:gap-12 mb-10 3xl:mb-16 animate-fade-in-up animation-delay-600">
-          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl animate-float">
             <Calendar className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
             <span>February 15-17, 2026</span>
           </div>
 
-          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl animate-float animation-delay-200">
             <MapPin className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
             <span>Chennai,Tamil Nadu</span>
           </div>
-          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl animate-float animation-delay-400">
             <Users className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
             <span>50+ Hackers</span>
           </div>

@@ -160,7 +160,7 @@ export const Domains = () => {
               </motion.span>
             ))}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-white max-w-2xl mx-auto text-lg">
             {`Choose your domain of interest and build solutions that make a difference`
               .split(" ")
               .map((word, i) => (
@@ -236,10 +236,10 @@ export const Domains = () => {
                   }
                 </div>
 
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold text-gradient mb-3 group-hover:text-primary transition-colors">
                   {domain.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {domain.description}
                 </p>
               </div>

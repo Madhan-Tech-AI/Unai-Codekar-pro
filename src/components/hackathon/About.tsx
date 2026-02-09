@@ -133,7 +133,7 @@ export const About = () => {
               ))}
             </span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-white max-w-2xl mx-auto text-lg">
             {`CodeKar is a student-focused hackathon platform organized by UNAI TECH, dedicated to fostering innovation through hands-on learning. UNAI TECH independently conducts hackathons and workshops while collaborating with esteemed corporate companies and educational institutions to provide students with industry exposure, mentorship, and growth opportunities. Our initiatives are designed to bridge the gap between academic learning and real-world technology applications.`
               .split(" ")
               .map((word, i) => (
@@ -165,7 +165,7 @@ export const About = () => {
                 className="relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
               >
                 <div className="mb-6">
-                  <div className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Vision</div>
+                  <div className="text-xs font-bold tracking-wider text-white uppercase mb-2">Vision</div>
                   <div className="w-12 h-12 mb-2">
                     <DotLottieReact
                       src="https://lottie.host/a47e918e-29ac-4600-827f-7dde5730c172/kUO9nK7fc3.lottie"
@@ -176,8 +176,8 @@ export const About = () => {
                   </div>
                 </div>
                 <div className="mt-auto">
-                  <h2 className="text-2xl font-bold text-white mb-2">Our Vision</h2>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <h2 className="text-2xl font-bold text-gradient mb-2">Our Vision</h2>
+                  <p className="text-white leading-relaxed">
                     To create meaningful opportunities for students by offering hands-on practical experience, real-world project exposure, and internship opportunities with reputed corporate institutions—preparing them for industry-ready careers.
                   </p>
                 </div>
@@ -194,7 +194,7 @@ export const About = () => {
                 className="relative h-full min-h-[300px] flex flex-col justify-between p-8 bg-transparent border border-white/10 rounded-3xl overflow-hidden"
               >
                 <div className="mb-6">
-                  <div className="text-xs font-bold tracking-wider text-muted-foreground uppercase mb-2">Mission</div>
+                  <div className="text-xs font-bold tracking-wider text-white uppercase mb-2">Mission</div>
                   <div className="w-12 h-12 mb-2">
                     <DotLottieReact
                       src="https://lottie.host/236d65bd-2e0b-4e53-8062-6d0534057809/3RPglDmJjv.lottie"
@@ -205,8 +205,8 @@ export const About = () => {
                   </div>
                 </div>
                 <div className="mt-auto">
-                  <h2 className="text-2xl font-bold text-white mb-2">Our Mission</h2>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <h2 className="text-2xl font-bold text-gradient mb-2">Our Mission</h2>
+                  <p className="text-white leading-relaxed">
                     To build a future-ready student ecosystem that encourages innovation, skill development, and real-world impact through technology and industry collaboration.
                   </p>
                 </div>
@@ -257,7 +257,7 @@ export const About = () => {
                   <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                     <CounterAnimation target={stat.value} suffix={stat.suffix} />
                   </div>
-                  <p className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
+                  <p className="text-white text-sm font-medium uppercase tracking-wider">
                     {stat.label}
                   </p>
                 </div>

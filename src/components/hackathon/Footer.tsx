@@ -12,7 +12,7 @@ const quickLinks = [
 const socialLinks = [
   { icon: Instagram, href: "https://www.instagram.com/unai.tech?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/unai-tech-2177072a0/", label: "LinkedIn" },
-  { icon: X, href: "https://x.com/UnaiTech74505?s=20", label: "X" },
+  { image: "/x-logo.png", href: "https://x.com/UnaiTech74505?s=20", label: "X" },
 ];
 
 export const Footer = () => {
@@ -38,7 +38,8 @@ export const Footer = () => {
                     aria-label={social.label}
                     className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                   >
-                    <social.icon className="w-3.5 h-3.5" />
+                    {/* @ts-ignore */}
+                    {social.icon ? <social.icon className="w-3.5 h-3.5" /> : <img src={social.image} alt={social.label} className="w-3.5 h-3.5 invert" />}
                   </a>
                 ))}
               </div>
