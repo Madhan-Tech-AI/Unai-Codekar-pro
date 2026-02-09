@@ -21,7 +21,7 @@ import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 
 // Define the custom element
-defineElement(lottie.loadAnimation);
+defineElement();
 
 // Add type definition for lord-icon
 declare global {

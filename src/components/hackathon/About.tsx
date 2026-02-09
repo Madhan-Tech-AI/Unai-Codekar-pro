@@ -6,7 +6,7 @@ import lottie from "lottie-web";
 import { defineElement } from "@lordicon/element";
 
 // Define the custom element
-defineElement(lottie.loadAnimation);
+defineElement();
 
 const stats = [
   { icon: null, lottie: "https://lottie.host/54a53bec-d6c0-402f-8474-5049124b3e57/lR3OqzeVjc.lottie", value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
