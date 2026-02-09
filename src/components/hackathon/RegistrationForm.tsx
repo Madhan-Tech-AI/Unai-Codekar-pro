@@ -1,12 +1,13 @@
 import { useState, Fragment } from "react";
-import { X, Plus, Trash2, Users, User, Mail, Phone, Briefcase, Github, GraduationCap, CheckCircle } from "lucide-react";
-import QRCode from "react-qr-code";
+import { X, Plus, Trash2, Users, User, Mail, Phone, Briefcase, Github, GraduationCap, CheckCircle, CreditCard, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { GOOGLE_SCRIPT_URL } from "@/lib/google-sheet-config";
 import emailjs from "@emailjs/browser";
 import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "@/lib/emailjs-config";
+import { REGISTRATION_FEES, isZohoConfigured } from "@/lib/zoho-payment-config";
+import { initiateZohoPayment, generateOrderId, type ZohoPaymentRequest } from "@/lib/zoho-payment-service";
 
 interface TeamMember {
     id: string;
@@ -34,6 +35,9 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
     const [upiId, setUpiId] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+    const [paymentError, setPaymentError] = useState<string>("");
+    const [orderId, setOrderId] = useState<string>("");
     const [members, setMembers] = useState<TeamMember[]>([
         { id: "1", name: "", email: "", collegeName: "", department: "", year: "", role: "Leader" },
     ]);
@@ -68,6 +72,68 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             members.map((m) => (m.id === id ? { ...m, [field]: value } : m))
         );
     };
+
+    // Handle Zoho Payment Initiation
+    const handlePayment = async () => {
+        // Validate form first
+        if (!members[0].name || !members[0].email) {
+            setPaymentError("Please fill in your name and email before proceeding to payment.");
+            return;
+        }
+
+        if (!projectTrack || !projectTitle || !projectIdea) {
+            setPaymentError("Please complete all project details before proceeding to payment.");
+            return;
+        }
+
+        if (registrationType === 'team' && !teamName) {
+            setPaymentError("Please enter a team name.");
+            return;
+        }
+
+        setIsProcessingPayment(true);
+        setPaymentError("");
+
+        try {
+            // Generate unique order ID
+            const newOrderId = generateOrderId();
+            setOrderId(newOrderId);
+
+            const registrationFee = registrationType === 'individual'
+                ? REGISTRATION_FEES.individual
+                : REGISTRATION_FEES.team;
+
+            // Prepare payment request
+            const paymentRequest: ZohoPaymentRequest = {
+                amount: registrationFee,
+                customerName: members[0].name,
+                customerEmail: members[0].email,
+                customerPhone: members[0].name, // You might want to add a phone field
+                orderId: newOrderId,
+                description: `Codekar Registration - ${registrationType === 'team' ? teamName : 'Individual'}`,
+                registrationType
+            };
+
+            // Initiate payment
+            const response = await initiateZohoPayment(paymentRequest);
+
+            if (response.success && response.paymentUrl) {
+                // Store transaction ID for later verification
+                setTransactionId(response.transactionId || newOrderId);
+
+                // Redirect to Zoho payment gateway
+                window.location.href = response.paymentUrl;
+            } else {
+                setPaymentError(response.error || "Failed to initiate payment. Please try again.");
+            }
+        } catch (error: any) {
+            console.error("Payment initiation error:", error);
+            setPaymentError(error.message || "An error occurred while initiating payment.");
+        } finally {
+            setIsProcessingPayment(false);
+        }
+    };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -157,8 +223,6 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
         }
     };
 
-    const registrationFee = registrationType === 'individual' ? 1 : 1000;
-    const upiUrl = `upi://pay?pa=8428293603@slc&pn=Nehemiah%20Nesanathan&am=${registrationFee}&cu=INR`;
 
     return (
         <AnimatePresence>
@@ -454,85 +518,93 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
 
                                     <div className="h-px bg-border" />
 
-                                    {/* Payment Section - NEW */}
+                                    {/* Payment Section - Zoho Gateway */}
                                     <section className="space-y-4">
                                         <div className="flex items-center gap-2 text-primary mb-4">
+                                            <CreditCard size={20} />
                                             <h3 className="font-semibold uppercase tracking-wider text-sm">
                                                 Payment
                                             </h3>
                                         </div>
 
-                                        <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 flex flex-col items-center space-y-4 text-center">
-                                            <p className="font-medium text-lg">
-                                                Registration Fee: <span className="text-primary font-bold">₹{registrationFee}</span>
-                                            </p>
-                                            <div className="bg-white p-4 rounded-lg shadow-lg">
-                                                <QRCode
-                                                    value={upiUrl}
-                                                    size={200}
-                                                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                                                    viewBox={`0 0 256 256`}
-                                                />
-                                            </div>
-                                            <p className="text-xs text-muted-foreground max-w-sm">
-                                                Scan the QR code to pay via UPI. The amount (₹{registrationFee}) will be automatically filled.
-                                            </p>
-                                        </div>
-
-                                        {/* Payment Details - Manual Entry */}
-                                        <div className="space-y-4 mt-6">
-                                            <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                                                <p className="text-xs text-yellow-400 font-medium">
-                                                    ⚠️ <strong>PAYMENT VERIFICATION REQUIRED</strong>
-                                                </p>
-                                                <p className="text-xs text-yellow-400 mt-2">
-                                                    After making payment, enter your Transaction ID below. This will be verified and registered in our system.
-                                                </p>
-                                            </div>
-
-                                            <div className="grid md:grid-cols-2 gap-4">
-                                                <div className="space-y-2">
-                                                    <label className="text-sm font-medium text-foreground">
-                                                        Transaction ID <span className="text-red-500">*</span>
-                                                    </label>
-                                                    <input
-                                                        type="text"
-                                                        value={transactionId}
-                                                        onChange={(e) => setTransactionId(e.target.value)}
-                                                        placeholder="Enter 12-digit Transaction ID"
-                                                        required
-                                                        className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                                                    />
-                                                    <p className="text-xs text-muted-foreground">
-                                                        Find this in your payment confirmation (UTR/Ref No)
-                                                    </p>
-                                                </div>
-                                                <div className="space-y-2">
-                                                    <label className="text-sm font-medium text-foreground">UPI ID (Optional)</label>
-                                                    <input
-                                                        type="text"
-                                                        value={upiId}
-                                                        onChange={(e) => setUpiId(e.target.value)}
-                                                        placeholder="yourname@upi"
-                                                        className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                                                    />
+                                        {!isZohoConfigured() ? (
+                                            // Show message when Zoho is not configured
+                                            <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-6">
+                                                <div className="flex items-start gap-3">
+                                                    <AlertCircle className="text-yellow-400 mt-0.5 flex-shrink-0" size={20} />
+                                                    <div className="space-y-2">
+                                                        <p className="text-sm font-medium text-yellow-400">
+                                                            Payment Gateway Configuration Pending
+                                                        </p>
+                                                        <p className="text-xs text-yellow-400/80">
+                                                            The Zoho payment gateway is currently being set up.
+                                                            Please check back soon or contact support for alternative payment methods.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        ) : (
+                                            // Show payment details when Zoho is configured
+                                            <>
+                                                <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
+                                                    <div className="flex items-center justify-between mb-4">
+                                                        <div>
+                                                            <p className="text-sm text-muted-foreground">Registration Fee</p>
+                                                            <p className="text-3xl font-bold text-primary">
+                                                                ₹{registrationType === 'individual'
+                                                                    ? REGISTRATION_FEES.individual
+                                                                    : REGISTRATION_FEES.team}
+                                                            </p>
+                                                        </div>
+                                                        <div className="p-3 bg-primary/10 rounded-lg">
+                                                            <CreditCard className="text-primary" size={32} />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="space-y-2 text-sm text-muted-foreground">
+                                                        <p>✓ Secure payment via Zoho Payment Gateway</p>
+                                                        <p>✓ Instant confirmation email</p>
+                                                        <p>✓ UPI, Cards, Net Banking accepted</p>
+                                                    </div>
+                                                </div>
+
+                                                {paymentError && (
+                                                    <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4">
+                                                        <div className="flex items-start gap-2">
+                                                            <AlertCircle className="text-red-400 mt-0.5 flex-shrink-0" size={16} />
+                                                            <p className="text-sm text-red-400">{paymentError}</p>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
                                     </section>
 
-
-                                    {/* Submit */}
+                                    {/* Submit / Pay Button */}
                                     <div className="pt-4 border-t border-border">
                                         <Button
-                                            type="submit"
-                                            disabled={isSubmitting || !transactionId.trim()}
+                                            type="button"
+                                            onClick={handlePayment}
+                                            disabled={isProcessingPayment || !isZohoConfigured()}
                                             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-6 rounded-lg shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
-                                            {isSubmitting ? "Registering..." : transactionId.trim() ? "Complete Registration" : "Enter Transaction ID First"}
+                                            {isProcessingPayment ? (
+                                                <span className="flex items-center gap-2">
+                                                    <span className="animate-spin">⏳</span> Processing...
+                                                </span>
+                                            ) : !isZohoConfigured() ? (
+                                                "Payment Gateway Not Configured"
+                                            ) : (
+                                                <span className="flex items-center gap-2">
+                                                    <CreditCard size={20} />
+                                                    Proceed to Payment - ₹{registrationType === 'individual'
+                                                        ? REGISTRATION_FEES.individual
+                                                        : REGISTRATION_FEES.team}
+                                                </span>
+                                            )}
                                         </Button>
                                         <p className="text-center text-muted-foreground text-xs mt-3">
-                                            By registering, you agree to our Code of Conduct and Terms.
+                                            By proceeding, you agree to our Code of Conduct and Terms.
                                         </p>
                                     </div>
                                 </form>
