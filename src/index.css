@@ -134,7 +134,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-400 to-blue-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ce2bf1] to-[#601ef9];
   }
 
   .glow {
@@ -227,10 +227,13 @@
 }
 
 @keyframes jump-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+
   50% {
     transform: translateY(-5px) scale(1.05);
     opacity: 0.9;

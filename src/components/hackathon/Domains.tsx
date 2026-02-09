@@ -17,6 +17,25 @@ import { motion } from "framer-motion";
 
 
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+
+// Define the custom element
+defineElement(lottie.loadAnimation);
+
+// Add type definition for lord-icon
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lord-icon': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        src?: string;
+        trigger?: string;
+        colors?: string;
+        delay?: string;
+      };
+    }
+  }
+}
 
 import SpotlightCard from "@/components/ui/SpotlightCard";
 
@@ -26,42 +45,42 @@ const domains = [
     title: "Education",
     description:
       "Build intelligent solutions using cutting-edge AI, deep learning, and machine learning technologies.",
-    lottie: "https://lottie.host/0a969d1f-57e0-4dc3-8ef0-2284bca8e509/yqM9TwOa0T.lottie",
+    lordicon: "/education-icon.json",
   },
   {
     icon: Globe,
     title: "Entertainment",
     description:
       "Design smart entertainment solutions using AI, deep learning, and machine learning to transform gaming, media, music, and digital experiences.",
-    lottie: "https://lottie.host/1a55cbbf-48c7-4568-babb-749080daec0d/hkeM7pgAwE.lottie",
+    lordicon: "/entertainment-icon.json",
   },
   {
     icon: Wallet,
     title: "AI agents and automation",
     description:
       "Develop innovative solutions using Artificial Intelligence and Machine Learning to transform ideas into intelligent systems.",
-    lottie: "https://lottie.host/fdd50a0b-4bba-4456-9bef-2fef4bfef0bc/v4gS4RsV95.lottie",
+    lordicon: "/ai-agents-icon.json",
   },
   {
     icon: Heart,
     title: "Big Data and Mass Communication",
     description:
       "Design innovative platforms powered by Big Data to improve information dissemination, media analytics, and large-scale communication systems.",
-    lottie: "https://lottie.host/c6550cc5-334c-4b1f-97b1-c9cbb76181b3/v13IgtleyA.lottie",
+    lordicon: "/big-data-icon.json",
   },
   {
     icon: Leaf,
     title: "Core AI & ML",
     description:
       "Develop innovative solutions using Artificial Intelligence and Machine Learning to transform ideas into intelligent systems.",
-    lottie: "https://lottie.host/6743c0ec-3e83-4905-bf98-1714ef82cdb5/PYnE9DenuY.lottie",
+    lordicon: "/core-ai-ml-icon.json",
   },
   {
     icon: Lightbulb,
     title: "Cutting Agents & Automation",
     description:
       "Develop cutting-edge agents and automation technologies that transform how tasks are executed and systems interact.",
-    lottie: "https://lottie.host/cdc62e12-fc8c-4718-8cb3-065d6d7ffe86/EyiVa619wc.lottie",
+    lordicon: "/cutting-agents-icon.json",
   },
 ];
 
@@ -197,9 +216,23 @@ export const Domains = () => {
                         domain.image ? (
                           // @ts-ignore
                           <img src={domain.image} alt={domain.title} className="w-8 h-8 object-contain filter brightness-0 invert group-hover:scale-110 transition-transform" />
-                        ) : (
-                          <domain.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
-                        )
+                        ) :
+                          // @ts-ignore
+                          domain.lordicon ? (
+                            <div className="w-full h-full flex items-center justify-center">
+                              <lord-icon
+                                src={
+                                  // @ts-ignore
+                                  domain.lordicon}
+                                trigger="loop"
+                                delay="2000"
+                                colors="primary:#ce2bf1,secondary:#601ef9"
+                                style={{ width: "100%", height: "100%" }}
+                              />
+                            </div>
+                          ) : (
+                            <domain.icon className="w-7 h-7 text-primary group-hover:scale-110 transition-transform" />
+                          )
                   }
                 </div>
 
