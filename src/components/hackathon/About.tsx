@@ -167,11 +167,12 @@ export const About = () => {
                 <div className="mb-6">
                   <div className="text-xs font-bold tracking-wider text-white uppercase mb-2">Vision</div>
                   <div className="w-12 h-12 mb-2">
-                    <DotLottieReact
-                      src="https://lottie.host/a47e918e-29ac-4600-827f-7dde5730c172/kUO9nK7fc3.lottie"
-                      loop
-                      autoplay
-                      className="w-full h-full"
+                    {/* @ts-ignore */}
+                    <lord-icon
+                      src="/wired-gradient-69-eye-hover-blink.json"
+                      trigger="loop"
+                      colors="primary:#ce2bf1,secondary:#601ef9"
+                      style={{ width: "100%", height: "100%" }}
                     />
                   </div>
                 </div>
@@ -200,7 +201,7 @@ export const About = () => {
                       src="https://lottie.host/236d65bd-2e0b-4e53-8062-6d0534057809/3RPglDmJjv.lottie"
                       loop
                       autoplay
-                      className="w-full h-full"
+                      className="w-full h-full [filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]"
                     />
                   </div>
                 </div>

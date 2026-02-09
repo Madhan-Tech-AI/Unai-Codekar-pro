@@ -27,7 +27,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
           showBorder={false}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold font-chakra animate-float"
         >
-          CODEKAR
+          CodeKar
         </GradientText>
 
 
