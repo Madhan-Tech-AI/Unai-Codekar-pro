@@ -2,12 +2,17 @@ import { useEffect, useState, useRef } from "react";
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import { motion } from "framer-motion";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import lottie from "lottie-web";
+import { defineElement } from "@lordicon/element";
+
+// Define the custom element
+defineElement(lottie.loadAnimation);
 
 const stats = [
   { icon: null, lottie: "https://lottie.host/54a53bec-d6c0-402f-8474-5049124b3e57/lR3OqzeVjc.lottie", value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
   { icon: null, lottie: "https://lottie.host/929d7d37-9260-4c0f-a831-0ad42b25c134/u3uknWnoYo.lottie", value: 200, suffix: "+", label: "Colleges Participated", color: "transparent", lottieClass: "[filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]" },
-  { icon: null, lottie: "https://lottie.host/432d41cd-278d-44b0-ac0d-7edf08362bd8/6BmhPi3b6J.lottie", value: 50, suffix: "+", label: "Cities Covered", color: "transparent", lottieClass: "[filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]" },
-  { icon: null, lottie: "https://lottie.host/1d969f47-16df-4949-85fb-e756f0a08fb4/QaOoBmaaGx.lottie", value: 10, suffix: "L+", label: "Prize Pool", color: "transparent", lottieClass: "[filter:invert(48%)_sepia(79%)_saturate(3092%)_hue-rotate(230deg)_brightness(99%)_contrast(106%)]" },
+  { icon: null, lordicon: ("/cities-icon.json"), value: 50, suffix: "+", label: "Cities Covered", color: "transparent" },
+  { icon: null, lordicon: ("/prize-pool-icon.json"), value: 10, suffix: "L+", label: "Prize Pool", color: "transparent" },
 ];
 
 const CounterAnimation = ({
@@ -220,21 +225,35 @@ export const About = () => {
                 className="relative p-8 rounded-3xl overflow-hidden flex flex-col items-center justify-center text-center group"
                 spotlightColor="rgba(0, 229, 255, 0.1)"
               >
-                <div className="relative z-10">
+                <div className="relative z-10 w-full flex flex-col items-center">
                   {/* @ts-ignore */}
-                  {stat.lottie ? (
+                  {stat.lordicon ? (
                     <div className="w-16 h-16 mx-auto mb-2">
-                      <DotLottieReact
-                        // @ts-ignore
-                        src={stat.lottie}
-                        loop
-                        autoplay
-                        className={`w-full h-full ${stat.lottieClass || ''}`}
+                      <lord-icon
+                        src={
+                          // @ts-ignore
+                          stat.lordicon}
+                        trigger="loop"
+                        delay="2000"
+                        colors="primary:#ce2bf1,secondary:#601ef9"
+                        style={{ width: "100%", height: "100%" }}
                       />
                     </div>
-                  ) : (
-                    <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                  )}
+                  ) :
+                    // @ts-ignore
+                    stat.lottie ? (
+                      <div className="w-16 h-16 mx-auto mb-2">
+                        <DotLottieReact
+                          // @ts-ignore
+                          src={stat.lottie}
+                          loop
+                          autoplay
+                          className={`w-full h-full ${stat.lottieClass || ''}`}
+                        />
+                      </div>
+                    ) : (
+                      <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                    )}
                   <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                     <CounterAnimation target={stat.value} suffix={stat.suffix} />
                   </div>
