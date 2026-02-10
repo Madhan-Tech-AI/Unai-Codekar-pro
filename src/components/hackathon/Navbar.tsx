@@ -5,6 +5,7 @@ import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, Info, Trophy, Gift, Users, HelpCircle, Handshake } from "lucide-react";
 
 const navLinks = [
+  { name: "Home", url: "#hero", icon: Home },
   { name: "About", url: "#about", icon: Info },
   { name: "Tracks", url: "#tracks", icon: Trophy },
   { name: "Prizes", url: "#prizes", icon: Gift },

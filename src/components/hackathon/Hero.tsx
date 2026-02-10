@@ -16,7 +16,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in pointer-events-none">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden animate-fade-in pointer-events-none">
       {/* Grid overlay */}
       <div className="container mx-auto px-4 relative z-10 text-center animate-fade-in pointer-events-auto">
 
