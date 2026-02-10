@@ -160,7 +160,7 @@ export const Domains = () => {
               </motion.span>
             ))}
           </h2>
-          <p className="text-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-white max-w-2xl mx-auto text-lg">
             {`Choose your domain of interest and build solutions that make a difference`
               .split(" ")
               .map((word, i) => (
@@ -226,7 +226,7 @@ export const Domains = () => {
                                   domain.lordicon}
                                 trigger="loop"
                                 delay="2000"
-                                colors="primary:#8EB69B,secondary:#235347"
+                                colors="primary:#ce2bf1,secondary:#601ef9"
                                 style={{ width: "100%", height: "100%" }}
                               />
                             </div>
@@ -239,7 +239,7 @@ export const Domains = () => {
                 <h3 className="text-xl font-bold text-gradient mb-3 group-hover:text-primary transition-colors">
                   {domain.title}
                 </h3>
-                <p className="text-foreground text-sm leading-relaxed">
+                <p className="text-white text-sm leading-relaxed">
                   {domain.description}
                 </p>
               </div>

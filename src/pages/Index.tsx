@@ -22,7 +22,8 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background relative">
-      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
+      {/* Background video removed */}
+      {/* <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
         <video
           autoPlay
           loop
@@ -33,7 +34,7 @@ const Index = () => {
           <source src="/background-video-final.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-background/60" />
-      </div>
+      </div> */}
 
 
       <div className="relative z-10">

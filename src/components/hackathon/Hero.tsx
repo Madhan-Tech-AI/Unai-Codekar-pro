@@ -23,7 +23,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
         {/* Main title */}
         <GradientText
           /*           colors={["#ce2bf1", "#601ef9", "#ce2bf1", "#601ef9", "#ce2bf1"]} */
-          colors={["#8EB69B", "#235347", "#F0FDF4", "#8EB69B", "#235347"]}
+          colors={["#ce2bf1", "#601ef9", "#ce2bf1", "#601ef9", "#ce2bf1"]}
           animationSpeed={10}
           showBorder={false}
           className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl 3xl:text-9xl 4xl:text-[11rem] font-bold font-chakra animate-float"
@@ -33,7 +33,7 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
 
 
         {/* Tagline */}
-        <div className="text-xl md:text-2xl 3xl:text-4xl text-muted-foreground max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
+        <div className="text-xl md:text-2xl 3xl:text-4xl text-slate-300 max-w-2xl 3xl:max-w-4xl mx-auto mb-8 3xl:mb-12 animate-fade-in-up animation-delay-400">
           <TextType
             text={["Innovation, Creativity, and Building the Future", "Join 50+ Hackers at UNAI 2026", "Build solutions that make a difference"]}
             typingSpeed={75}
@@ -45,16 +45,16 @@ export const Hero = ({ onIntroComplete, onApplyClick }: { onIntroComplete?: () =
 
         {/* Event details */}
         <div className="flex flex-wrap justify-center gap-6 3xl:gap-12 mb-10 3xl:mb-16 animate-fade-in-up animation-delay-600">
-          <div className="flex items-center gap-2 text-muted-foreground 3xl:text-2xl animate-float">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl animate-float">
             <Calendar className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
             <span>February 15-17, 2026</span>
           </div>
 
-          <div className="flex items-center gap-2 text-muted-foreground 3xl:text-2xl animate-float animation-delay-200">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl animate-float animation-delay-200">
             <MapPin className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
             <span>Chennai,Tamil Nadu</span>
           </div>
-          <div className="flex items-center gap-2 text-muted-foreground 3xl:text-2xl animate-float animation-delay-400">
+          <div className="flex items-center gap-2 text-slate-300 3xl:text-2xl animate-float animation-delay-400">
             <Users className="w-5 h-5 3xl:w-8 3xl:h-8 text-primary" />
             <span>50+ Hackers</span>
           </div>

@@ -133,7 +133,7 @@ export const About = () => {
               ))}
             </span>
           </h2>
-          <p className="text-foreground max-w-2xl mx-auto text-lg">
+          <p className="text-white max-w-2xl mx-auto text-lg">
             {`CodeKar is a student-focused hackathon platform organized by UNAI TECH, dedicated to fostering innovation through hands-on learning. UNAI TECH independently conducts hackathons and workshops while collaborating with esteemed corporate companies and educational institutions to provide students with industry exposure, mentorship, and growth opportunities. Our initiatives are designed to bridge the gap between academic learning and real-world technology applications.`
               .split(" ")
               .map((word, i) => (
@@ -171,14 +171,14 @@ export const About = () => {
                     <lord-icon
                       src="/wired-gradient-69-eye-hover-blink.json"
                       trigger="loop"
-                      colors="primary:#8EB69B,secondary:#235347"
+                      colors="primary:#ce2bf1,secondary:#601ef9"
                       style={{ width: "100%", height: "100%" }}
                     />
                   </div>
                 </div>
                 <div className="mt-auto">
                   <h2 className="text-2xl font-bold text-gradient mb-2">Our Vision</h2>
-                  <p className="text-foreground leading-relaxed">
+                  <p className="text-white leading-relaxed">
                     To create meaningful opportunities for students by offering hands-on practical experience, real-world project exposure, and internship opportunities with reputed corporate institutions—preparing them for industry-ready careers.
                   </p>
                 </div>
@@ -207,7 +207,7 @@ export const About = () => {
                 </div>
                 <div className="mt-auto">
                   <h2 className="text-2xl font-bold text-gradient mb-2">Our Mission</h2>
-                  <p className="text-foreground leading-relaxed">
+                  <p className="text-white leading-relaxed">
                     To build a future-ready student ecosystem that encourages innovation, skill development, and real-world impact through technology and industry collaboration.
                   </p>
                 </div>
@@ -236,7 +236,7 @@ export const About = () => {
                           stat.lordicon}
                         trigger="loop"
                         delay="2000"
-                        colors="primary:#8EB69B,secondary:#235347"
+                        colors="primary:#ce2bf1,secondary:#601ef9"
                         style={{ width: "100%", height: "100%" }}
                       />
                     </div>
@@ -255,10 +255,10 @@ export const About = () => {
                     ) : (
                       <stat.icon className="w-10 h-10 text-primary mx-auto mb-4 group-hover:scale-110 transition-transform" />
                     )}
-                  <div className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+                  <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                     <CounterAnimation target={stat.value} suffix={stat.suffix} />
                   </div>
-                  <p className="text-foreground text-sm font-medium uppercase tracking-wider">
+                  <p className="text-white text-sm font-medium uppercase tracking-wider">
                     {stat.label}
                   </p>
                 </div>
