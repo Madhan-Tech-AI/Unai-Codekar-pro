@@ -39,7 +39,7 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
           <NavBar items={navLinks} />
           <Button
             onClick={onApplyClick}
-            className="bg-gradient-to-r from-[#ce2bf1] to-[#601ef9] text-white hover:opacity-90 transition-opacity 3xl:text-lg 3xl:px-8 3xl:py-6 animate-jump-pulse"
+            className="bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity 3xl:text-lg 3xl:px-8 3xl:py-6 animate-jump-pulse"
           >
             Apply Now
           </Button>
@@ -73,7 +73,7 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
                 setIsMobileMenuOpen(false);
                 onApplyClick?.();
               }}
-              className="w-full bg-gradient-to-r from-[#ce2bf1] to-[#601ef9] text-white hover:opacity-90 transition-opacity animate-jump-pulse"
+              className="w-full bg-gradient-to-r from-primary to-secondary text-primary-foreground hover:opacity-90 transition-opacity animate-jump-pulse"
             >
               Apply Now
             </Button>
