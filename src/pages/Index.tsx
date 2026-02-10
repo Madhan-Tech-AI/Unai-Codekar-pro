@@ -21,22 +21,7 @@ const Index = () => {
   const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-background relative">
-      {/* Background video removed */}
-      {/* <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-40"
-        >
-          <source src="/background-video-final.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-background/60" />
-      </div> */}
-
-
+    <main className="min-h-screen relative">
       <div className="relative z-10">
 
         {showNavbar && <Navbar onApplyClick={() => {
@@ -51,6 +36,7 @@ const Index = () => {
           }}
         />
         <About />
+        <div className="energy-line" />
         <Domains />
         <Prizes />
         <SponsorChallenges />
