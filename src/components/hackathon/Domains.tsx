@@ -7,7 +7,11 @@ import {
   Leaf,
   Lightbulb,
 } from "lucide-react";
+<<<<<<< HEAD
 import { motion } from "framer-motion";
+=======
+import GradientText from "@/components/ui/GradientText";
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 
 
@@ -130,6 +134,7 @@ export const Domains = () => {
         {/* Section header */}
         <div ref={headingRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
+<<<<<<< HEAD
             <span className="text-gradient inline-block">
               {text1.split("").map((char, i) => (
                 <motion.span
@@ -159,6 +164,16 @@ export const Domains = () => {
                 {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
+=======
+            <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="text-4xl md:text-5xl font-bold"
+            >
+              Hackathon
+            </GradientText> Tracks
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
           </h2>
           <p className="text-white max-w-2xl mx-auto text-lg">
             {`Choose your domain of interest and build solutions that make a difference`

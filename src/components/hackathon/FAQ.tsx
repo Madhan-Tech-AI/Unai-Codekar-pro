@@ -5,7 +5,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+<<<<<<< HEAD
 import { motion } from "framer-motion";
+=======
+import GradientText from "@/components/ui/GradientText";
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 const faqs = [
   {
@@ -96,6 +100,7 @@ export const FAQ = () => {
         {/* Section header */}
         <div ref={headingRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
+<<<<<<< HEAD
             <span className="text-gradient inline-block">
               {text1.split("").map((char, i) => (
                 <motion.span
@@ -125,6 +130,16 @@ export const FAQ = () => {
                 {char === " " ? "\u00A0" : char}
               </motion.span>
             ))}
+=======
+            <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="text-4xl md:text-5xl font-bold"
+            >
+              Frequently
+            </GradientText> Asked Questions
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             {`Everything you need to know about the hackathon`
