@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { Mail, MapPin, Phone, Instagram, Linkedin, X } from "lucide-react";
+=======
+import { Mail, MapPin, Phone, Instagram, Linkedin, Twitter, Github, MessageCircle } from "lucide-react";
+import GradientText from "@/components/ui/GradientText";
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 const quickLinks = [
   { name: "About", href: "#about" },
@@ -17,6 +22,7 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
+<<<<<<< HEAD
     <footer className="py-4 relative">
       <div className="container mx-auto px-4">
         <div className="glass rounded-xl p-4 md:p-6">
@@ -95,6 +101,62 @@ export const Footer = () => {
                   </div>
                 </li>
               </ul>
+=======
+    <footer className="py-16 relative border-t border-border mt-20">
+      <div className="container mx-auto px-4">
+        {/* CTA Section */}
+        <div className="mb-20">
+          <div className="glass rounded-3xl p-8 md:p-12 text-center relative overflow-hidden border border-white/10 group hover:border-primary/50 transition-colors duration-500">
+            {/* Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-primary/20 blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white tracking-tight">
+                Start Exploring
+              </h2>
+              <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl">
+                Animations, Components, Backgrounds - One Click Away
+              </p>
+              <a
+                href="/get-started/index"
+                className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-primary text-primary-foreground font-semibold text-lg hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+              >
+                Browse Components
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <a href="#" className="mb-4 block">
+              <GradientText
+                colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                animationSpeed={3}
+                showBorder={false}
+                className="text-3xl font-bold"
+              >
+                CodeKar
+              </GradientText>
+            </a>
+            <p className="text-muted-foreground mb-6 max-w-md">
+              Join India's premier student hackathon and build solutions that
+              matter. 48 hours of innovation, collaboration, and endless
+              possibilities.
+            </p>
+            <div className="flex gap-3">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
             </div>
           </div>
 

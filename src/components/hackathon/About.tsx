@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+<<<<<<< HEAD
 import SpotlightCard from "@/components/ui/SpotlightCard";
 import { motion } from "framer-motion";
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
@@ -8,6 +9,12 @@ import { BorderTrail } from "@/components/ui/border-trail";
 
 // Define the custom element
 defineElement();
+=======
+import { Users, Building2, MapPin, Trophy } from "lucide-react";
+import MagicBento from "@/components/ui/MagicBento";
+import GradientText from "@/components/ui/GradientText";
+
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 const stats = [
   { icon: null, lottie: "https://lottie.host/54a53bec-d6c0-402f-8474-5049124b3e57/lR3OqzeVjc.lottie", value: 5000, suffix: "+", label: "Total Registrations", color: "transparent" },
@@ -118,6 +125,7 @@ export const About = () => {
         {/* Section header */}
         <div ref={headingRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
+<<<<<<< HEAD
             <span className="text-gradient inline-block">
               {text.split("").map((char, i) => (
                 <motion.span
@@ -133,6 +141,16 @@ export const About = () => {
                 </motion.span>
               ))}
             </span>
+=======
+            <GradientText
+              colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+              animationSpeed={3}
+              showBorder={false}
+              className="text-4xl md:text-5xl font-bold"
+            >
+              About
+            </GradientText> The Hackathon
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
           </h2>
           <p className="text-white max-w-2xl mx-auto text-lg">
             {`CodeKar is a student-focused hackathon platform organized by UNAI TECH, dedicated to fostering innovation through hands-on learning. UNAI TECH independently conducts hackathons and workshops while collaborating with esteemed corporate companies and educational institutions to provide students with industry exposure, mentorship, and growth opportunities. Our initiatives are designed to bridge the gap between academic learning and real-world technology applications.`
@@ -290,9 +308,30 @@ export const About = () => {
               </SpotlightCard>
             ))}
           </div>
+
+
         </div>
 
+<<<<<<< HEAD
       </div >
     </section >
+=======
+        {/* Stats */}
+        {/* Stats */}
+        <MagicBento
+          textAutoHide={true}
+          enableStars={true}
+          enableSpotlight={true}
+          enableBorderGlow={true}
+          enableTilt={true}
+          enableMagnetism={true}
+          clickEffect={true}
+          spotlightRadius={300}
+          particleCount={12}
+          glowColor="132, 0, 255"
+        />
+      </div>
+    </section>
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
   );
 };
