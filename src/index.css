@@ -112,6 +112,40 @@
   html {
     scroll-behavior: smooth;
     font-size: 16px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight leading-tight text-foreground;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-transform: capitalize;
+    /* Approximation for Title Case, though JS often handles it better */
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl;
+    /* Hero size approximation 48-60px */
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+    /* Section size approximation 30-36px */
+  }
+
+  p,
+  span,
+  div,
+  li,
+  a {
+    @apply leading-relaxed;
+    /* 1.6 line height */
+    line-height: 1.6;
   }
 
   /* 4K Optimization: Scale base font size for large screens */
@@ -134,7 +168,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-400 to-blue-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#ce2bf1] to-[#601ef9];
   }
 
   .glow {
@@ -174,7 +208,17 @@
   .animate-jump-pulse {
     animation: jump-pulse 2s ease-in-out infinite;
   }
+
+  .energy-line {
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+    box-shadow: 0 0 15px hsl(var(--primary));
+    margin-bottom: 2rem;
+    opacity: 0.8;
+  }
 }
+
 
 @keyframes float {
 
@@ -227,10 +271,13 @@
 }
 
 @keyframes jump-pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) scale(1);
     opacity: 1;
   }
+
   50% {
     transform: translateY(-5px) scale(1.05);
     opacity: 0.9;
@@ -252,5 +299,3 @@
 .animation-delay-600 {
   animation-delay: 0.6s;
 }
-
-/* 0x64756465 */

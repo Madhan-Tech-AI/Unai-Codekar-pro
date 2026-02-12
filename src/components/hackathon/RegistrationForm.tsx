@@ -3,7 +3,7 @@ import { X, Plus, Trash2, Users, User, Mail, Phone, Briefcase, Github, Graduatio
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { GOOGLE_SCRIPT_URL } from "@/lib/google-sheet-config";
+import { supabase } from "@/lib/supabase-client";
 import emailjs from "@emailjs/browser";
 import { EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY } from "@/lib/emailjs-config";
 import { REGISTRATION_FEES, isZohoConfigured } from "@/lib/zoho-payment-config";
@@ -152,42 +152,37 @@ export const RegistrationForm = ({ isOpen, onClose }: RegistrationFormProps) => 
             upiId
         };
 
-        if (!GOOGLE_SCRIPT_URL) {
-            alert("Error: Google Script URL is not configured. Please check src/lib/google-sheet-config.ts");
-            setIsSubmitting(false);
-            return;
-        }
 
         try {
-            // First, submit to Google Sheets and check for duplicate transaction
-            const sheetResponse = await fetch(GOOGLE_SCRIPT_URL, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-                redirect: 'follow'
-            });
+            // Insert data into Supabase
+            const { error } = await supabase
+                .from('registrations')
+                .insert([
+                    {
+                        registration_type: formData.registrationType,
+                        team_name: formData.teamName,
+                        project_track: formData.projectTrack,
+                        project_title: formData.projectTitle,
+                        project_idea: formData.projectIdea,
+                        members: formData.members,
+                        amount: formData.amount,
+                        transaction_id: formData.transactionId,
+                        request_data: formData, // Optional: store full data for backup
+                    },
+                ]);
 
-            const sheetResult = await sheetResponse.json();
-
-            // Check for duplicate transaction error
-            if (sheetResult.error === "DUPLICATE_TRANSACTION") {
-                alert("⚠️ DUPLICATE TRANSACTION DETECTED\n\n" +
-                    "This transaction ID has already been used for registration.\n\n" +
-                    "This means either:\n" +
-                    "• You have already registered with this payment\n" +
-                    "• Someone else used the same payment screenshot\n\n" +
-                    "If you believe this is an error, please contact support.");
-
-                // Reset payment details so user can try again
-                setTransactionId("");
-                setUpiId("");
-                setIsSubmitting(false);
-                return;
+            if (error) {
+                // Check if error is related to duplicate key violation (e.g. transaction_id if unique)
+                if (error.code === '23505') { // Postgres unique violation code
+                    alert("⚠️ DUPLICATE ENTRY DETECTED\n\n" +
+                        "This transaction ID or team/email has already been registered.\n\n" +
+                        "Please check your details or contact support.");
+                    setIsSubmitting(false);
+                    return;
+                }
+                throw error;
             }
 
-            if (sheetResult.result !== "success") {
-                throw new Error(sheetResult.message || "Failed to submit to Google Sheet");
-            }
 
             // If sheet submission successful, send confirmation email
             const templateParams = {
