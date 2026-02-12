@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-<<<<<<< HEAD
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, Info, Trophy, Gift, Users, HelpCircle, Handshake } from "lucide-react";
-=======
-import GradientText from "@/components/ui/GradientText";
->>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 const navLinks = [
   { name: "Home", url: "#hero", icon: Home },
@@ -30,27 +26,12 @@ export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
 
   return (
     <nav
-<<<<<<< HEAD
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-md py-4 shadow-md" : "bg-transparent py-5 3xl:py-10"
         }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
         <a href="#" className="flex items-center">
           <img src="/unai-logo.png" alt="UNAI" className="h-8 3xl:h-12 w-auto" />
-=======
-      className="absolute top-0 left-0 right-0 z-50 py-5 3xl:py-10 bg-transparent"
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
-        <a href="#">
-          <GradientText
-            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
-            animationSpeed={3}
-            showBorder={false}
-            className="text-2xl 3xl:text-4xl font-bold"
-          >
-            CodeKar
-          </GradientText>
->>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
         </a>
 
         {/* Desktop Navigation */}
