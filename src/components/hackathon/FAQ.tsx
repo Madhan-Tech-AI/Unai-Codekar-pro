@@ -1,61 +1,136 @@
+import { useEffect, useState, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+<<<<<<< HEAD
+import { motion } from "framer-motion";
+=======
 import GradientText from "@/components/ui/GradientText";
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 const faqs = [
   {
-    question: "Who can participate in the hackathon?",
+    question: "What is this hackathon about?",
     answer:
-      "The hackathon is open to all college students, high school students (16+), and recent graduates. You can participate individually or in teams of 2-4 members. We encourage diverse teams with different skill sets.",
+      "This is an online hackathon for college students where participants solve real-world problems using technology and innovation within a limited time.",
   },
   {
-    question: "Is there a registration fee?",
+    question: "Who can participate?",
     answer:
-      "No, participation in the hackathon is completely free! We provide free food, swag, and access to all workshops and mentorship sessions for all registered participants.",
+      "Any college student (UG / PG / Diploma) from any stream or institution is eligible to participate.",
   },
   {
-    question: "What should I bring?",
+    question: "Is this hackathon online or offline?",
     answer:
-      "Bring your laptop, charger, student ID, and any hardware you might need for your project. We'll provide the venue, internet, meals, and all the energy drinks you need to stay awake!",
+      "The hackathon is completely online. All submissions, evaluations, and announcements will be done virtually.",
   },
   {
-    question: "Do I need to have a team beforehand?",
+    question: "Can I participate individually or as a team?",
     answer:
-      "Not necessarily! While you can register with a pre-formed team, we also have team formation activities at the beginning of the event. Solo hackers are welcome to find teammates during the event.",
+      "You can participate either individually or as a team of up to 4 members.",
   },
   {
-    question: "What kind of projects can I build?",
+    question: "How many members are allowed in a team?",
     answer:
-      "You can build anything! Web apps, mobile apps, hardware projects, AI/ML solutions, games, tools — the possibilities are endless. Just make sure your project fits into one of our hackathon tracks.",
+      "Each team must have 3 or 4 members.",
   },
   {
-    question: "Will there be food and accommodation?",
+    question: "Can team members be from different colleges?",
     answer:
-      "Yes! We provide all meals (breakfast, lunch, dinner, and midnight snacks) throughout the hackathon. Sleeping arrangements with sleeping bags are available at the venue for those who want to rest.",
+      "No, team members must be from the same college.",
   },
   {
-    question: "What are the judging criteria?",
+    question: "Will participants receive certificates?",
     answer:
-      "Projects are judged based on: Innovation & Creativity (25%), Technical Complexity (25%), Practical Impact (25%), and Presentation & Demo (25%). Our judges look for unique solutions that solve real problems.",
+      "Yes, participants will receive certificates for their participation.",
   },
   {
-    question: "Can I start working on my project before the hackathon?",
+    question: "Is the registration fee refundable?",
     answer:
-      "No, all code must be written during the hackathon. However, you can come with ideas, designs, and research. Using open-source libraries and APIs is allowed and encouraged!",
+      "No,the registration fee is non-refundable.",
   },
 ];
 
 export const FAQ = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (headingRef.current) {
+      observer.observe(headingRef.current);
+    }
+
+    return () => {
+      if (headingRef.current) {
+        observer.unobserve(headingRef.current);
+      }
+    };
+  }, []);
+
+  const text1 = "Frequently";
+  const text2 = "Asked Questions";
+
+  const letterVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: (i: number) => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: i * 0.05,
+        type: "spring" as const,
+        stiffness: 300,
+        damping: 20,
+      },
+    }),
+  };
+
   return (
-    <section id="faq" className="py-24 relative bg-muted/20 overflow-hidden">
+    <section id="faq" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
-        <div className="text-center mb-16">
+        <div ref={headingRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
+<<<<<<< HEAD
+            <span className="text-gradient inline-block">
+              {text1.split("").map((char, i) => (
+                <motion.span
+                  key={`frequently-${i}`}
+                  custom={i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block"
+                  style={{ display: "inline-block" }}
+                >
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              ))}
+            </span>
+            {" "}
+            {text2.split("").map((char, i) => (
+              <motion.span
+                key={`asked-${i}`}
+                custom={text1.length + i}
+                initial="hidden"
+                animate={isVisible ? "visible" : "hidden"}
+                variants={letterVariants}
+                className="inline-block"
+                style={{ display: "inline-block" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+=======
             <GradientText
               colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
               animationSpeed={3}
@@ -64,9 +139,24 @@ export const FAQ = () => {
             >
               Frequently
             </GradientText> Asked Questions
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Everything you need to know about the hackathon
+            {`Everything you need to know about the hackathon`
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={`word-${i}`}
+                  custom={text1.length + text2.length + i}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  variants={letterVariants}
+                  className="inline-block mr-[0.25em]"
+                  style={{ display: "inline-block" }}
+                >
+                  {word}
+                </motion.span>
+              ))}
           </p>
         </div>
 
@@ -77,7 +167,7 @@ export const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass rounded-xl border border-border px-6 data-[state=open]:border-primary/50 data-[state=open]:card-glow transition-all"
+                className=" rounded-xl border border-border px-6 data-[state=open]:border-primary/50 data-[state=open]:card-glow transition-all"
               >
                 <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-6">
                   {faq.question}
@@ -94,10 +184,10 @@ export const FAQ = () => {
         <div className="text-center mt-12">
           <p className="text-muted-foreground mb-2">Still have questions?</p>
           <a
-            href="mailto:contact@codekar.com"
+            href="mailto:contact@unai.com"
             className="text-primary hover:underline font-medium"
           >
-            Reach out to us at contact@codekar.com
+            Reach out to us at contact@unai.com
           </a>
         </div>
       </div>

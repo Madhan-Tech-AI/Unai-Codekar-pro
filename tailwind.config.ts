@@ -25,7 +25,7 @@ export default {
         '4xl': '2560px',
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ['"Chakra Petch"', "ui-sans-serif", "system-ui", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
       },
       colors: {
         border: "hsl(var(--border))",

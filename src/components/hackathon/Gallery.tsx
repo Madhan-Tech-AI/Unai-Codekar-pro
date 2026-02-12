@@ -13,7 +13,7 @@ const galleryImages = [
 
 export const Gallery = () => {
   return (
-    <section className="py-24 relative bg-muted/20 overflow-hidden">
+    <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
@@ -33,6 +33,32 @@ export const Gallery = () => {
         </div>
 
         {/* Gallery grid */}
+<<<<<<< HEAD
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {galleryImages.map((image, index) => (
+            <div
+              key={image.id}
+              className={` rounded-xl overflow-hidden group cursor-pointer hover:card-glow transition-all duration-300 ${index === 0 || index === 7 ? "md:col-span-2 md:row-span-2" : ""
+                }`}
+            >
+              <div
+                className={`bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center ${index === 0 || index === 7
+                  ? "aspect-square md:aspect-auto md:h-full"
+                  : "aspect-square"
+                  }`}
+              >
+                <div className="text-center p-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform">
+                    <span className="text-2xl">📸</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
+                    {image.alt}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+=======
         <div className="w-full">
           <Masonry
             items={[
@@ -54,6 +80,7 @@ export const Gallery = () => {
             blurToFocus={true}
             colorShiftOnHover={false}
           />
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
         </div>
 
         {/* CTA */}

@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+<<<<<<< HEAD
+import { NavBar } from "@/components/ui/tubelight-navbar";
+import { Home, Info, Trophy, Gift, Users, HelpCircle, Handshake } from "lucide-react";
+=======
 import GradientText from "@/components/ui/GradientText";
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
 
 const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Tracks", href: "#tracks" },
-  { name: "Prizes", href: "#prizes" },
-
-  { name: "Sponsors", href: "#sponsors" },
-  { name: "Team", href: "#team" },
-  { name: "FAQ", href: "#faq" },
+  { name: "Home", url: "#hero", icon: Home },
+  { name: "About", url: "#about", icon: Info },
+  { name: "Tracks", url: "#tracks", icon: Trophy },
+  { name: "Prizes", url: "#prizes", icon: Gift },
+  { name: "Sponsors", url: "#sponsors", icon: Handshake },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ onApplyClick }: { onApplyClick?: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -27,6 +30,14 @@ export const Navbar = () => {
 
   return (
     <nav
+<<<<<<< HEAD
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-md py-4 shadow-md" : "bg-transparent py-5 3xl:py-10"
+        }`}
+    >
+      <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
+        <a href="#" className="flex items-center">
+          <img src="/unai-logo.png" alt="UNAI" className="h-8 3xl:h-12 w-auto" />
+=======
       className="absolute top-0 left-0 right-0 z-50 py-5 3xl:py-10 bg-transparent"
     >
       <div className="container mx-auto px-4 flex items-center justify-between relative z-10">
@@ -39,20 +50,16 @@ export const Navbar = () => {
           >
             CodeKar
           </GradientText>
+>>>>>>> 4286de09de9cd2dabda1a05e9c16bc4161eaeb63
         </a>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8 3xl:gap-12">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm 3xl:text-xl font-medium text-slate-300 hover:text-primary transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 3xl:text-lg 3xl:px-8 3xl:py-6">
+          <NavBar items={navLinks} />
+          <Button
+            onClick={onApplyClick}
+            className="bg-gradient-to-r from-[#ce2bf1] to-[#601ef9] text-white hover:opacity-90 transition-opacity 3xl:text-lg 3xl:px-8 3xl:py-6 animate-jump-pulse"
+          >
             Apply Now
           </Button>
         </div>
@@ -73,14 +80,20 @@ export const Navbar = () => {
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={link.url}
                 className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+            <Button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onApplyClick?.();
+              }}
+              className="w-full bg-gradient-to-r from-[#ce2bf1] to-[#601ef9] text-white hover:opacity-90 transition-opacity animate-jump-pulse"
+            >
               Apply Now
             </Button>
           </div>
